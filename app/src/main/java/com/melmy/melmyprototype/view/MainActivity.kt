@@ -1,7 +1,8 @@
-package com.melmy.melmyprototype
+package com.melmy.melmyprototype.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.melmy.melmyprototype.R
 
 class MainActivity : AppCompatActivity() {
 
