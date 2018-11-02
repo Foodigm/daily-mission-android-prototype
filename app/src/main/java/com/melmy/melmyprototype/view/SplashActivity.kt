@@ -13,12 +13,18 @@ import 	androidx.sqlite.db.transaction
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.Executors
 
-class MainActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        startActivity(AddMissionActivity.createIntent(this))
+//        startActivity(HomeActivity.createIntent(this))
+//        debug()
+    }
+
+    fun debug(){
         val db = AppDatabase.getInstance(this)
         val mission = Mission(
                 0,
@@ -49,3 +55,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
