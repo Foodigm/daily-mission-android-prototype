@@ -17,6 +17,8 @@
     <string name="total_goal">전체 목표</string>
     <string name="daily_goal">일일 목표</string>
     <string name="goal_count">회</string>
+    <string name="mission_list">미션 리스트</string>
+    <string name="add_mission">미션 추가</string>
     <string-array name="mission_types">
         <item>@string/mission_type</item>
         <item>@string/mission_type_count</item>
