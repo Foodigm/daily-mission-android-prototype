@@ -9,19 +9,15 @@ import com.melmy.melmyprototype.model.Mission
 import com.melmy.melmyprototype.model.MissionType
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import java.util.*
-import 	androidx.sqlite.db.transaction
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.concurrent.Executors
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        startActivity(AddMissionActivity.createIntent(this))
-//        startActivity(HomeActivity.createIntent(this))
-//        debug()
+        setContentView(R.layout.activity_splash)
+        startActivity(HomeActivity.createIntent(this))
     }
 
     fun debug(){
