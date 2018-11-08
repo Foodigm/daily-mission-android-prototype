@@ -14,6 +14,6 @@ import java.util.*
 data class CompletedHistory(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id") val historyId: Long = 0,
-        @ColumnInfo(name = "mission_id") val mission_id: Long,
+        @ColumnInfo(name = "mission_id") val missionId: Long,
         @ColumnInfo(name = "date") val date: Calendar
 )
