@@ -16,11 +16,16 @@
     <string name="mission_type_count">횟수 형 미션</string>
     <string name="total_goal">전체 목표</string>
     <string name="daily_goal">일일 목표</string>
-    <string name="goal_count">회</string>
-    <string name="mission_list">미션 리스트</string>
+    <string name="unit_count">회</string>
+    <string name="unit_minute">분</string>
+    <string name="unit_hour">시간</string>
+    <string name="all_mission_list">미션 리스트</string>
     <string name="add_mission">미션 추가</string>
+    <string name="daily_achievement_rate">오늘의 달성도</string>
+    <string name="daily_mission">오늘의 미션</string>
+    <string name="daily_complete_percent">%d %</string>
+    <string name="empty_mission_list">미션이 없습니다</string>
     <string-array name="mission_types">
-        <item>@string/mission_type</item>
         <item>@string/mission_type_count</item>
         <item>@string/mission_type_time</item>
     </string-array>

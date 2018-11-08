@@ -6,6 +6,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:fullBackupContent=""
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -19,11 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.AddMissionActivity" />
+        <activity android:name=".view.MissionAddActivity" />
         <activity android:name=".view.MissionListActivity" />
         <activity android:name=".view.MissionDetailActivity" />
         <activity android:name=".view.HomeActivity" />
-        <activity android:name=".view.HistoryActivity"></activity>
+        <activity android:name=".view.HistoryActivity" />
     </application>
 
 </manifest>
