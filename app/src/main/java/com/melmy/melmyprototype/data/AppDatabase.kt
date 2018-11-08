@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.db
+package com.melmy.melmyprototype.data
 
 import android.content.Context
 import androidx.room.Database
@@ -17,12 +17,15 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        var instance: AppDatabase? = null
+        private var instance: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase? {
+        fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
                         .build()
+                        .also {
+                            instance = it
+                        }
             }
         }
     }

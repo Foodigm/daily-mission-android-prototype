@@ -8,4 +8,5 @@
     <dimen name="day_picker_cell_size">52dp</dimen>
     <dimen name="default_padding">12dp</dimen>
     <dimen name="default_item_layout_padding">8dp</dimen>
+    <dimen name="toolbar_title_left_padding">8dp</dimen>
 </resources>

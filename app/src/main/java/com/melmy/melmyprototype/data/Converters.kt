@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.db
+package com.melmy.melmyprototype.data
 
 import androidx.room.TypeConverter
 import com.melmy.melmyprototype.model.MissionType
@@ -38,5 +38,5 @@ class Converters {
 
     @TypeConverter
     fun timestampToCalendar(value: Long): Calendar =
-        Calendar.getInstance().apply { timeInMillis = value }
+            Calendar.getInstance().apply { timeInMillis = value }
 }

@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.db
+package com.melmy.melmyprototype.data
 
 import androidx.room.Dao
 import androidx.room.Insert
