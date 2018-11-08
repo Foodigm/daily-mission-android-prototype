@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:rotation="270" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/progressBar"
+        android:layout_alignRight="@+id/progressBar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="333dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:textSize="22sp"
+        tools:text="미션 이름" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/progressBar"
+        android:layout_alignRight="@+id/progressBar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="141dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:textSize="40sp"
+        tools:text="50%" />
+</RelativeLayout>
