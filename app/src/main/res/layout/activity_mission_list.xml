@@ -39,11 +39,12 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
+                        android:paddingStart="@dimen/toolbar_title_left_padding"
                         android:paddingLeft="@dimen/toolbar_title_left_padding"
                         android:text="@string/all_mission_list"
                         android:textColor="@android:color/white"
                         android:textSize="18sp"
-                        android:paddingStart="@dimen/toolbar_title_left_padding" />
+                        tools:ignore="RtlSymmetry" />
 
                     <ImageView
                         android:id="@+id/add_mission_image_view"
@@ -66,15 +67,18 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:listitem="@android:layout/simple_list_item_1">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
+            android:id="@+id/empty_mission_list_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -31,7 +32,7 @@ class MissionListActivity : AppCompatActivity() {
 
         initToolbar(binding)
         initView(binding)
-        subscribeUi()
+        subscribeUi(binding)
     }
 
     private fun initView(binding: ActivityMissionListBinding) {
@@ -42,12 +43,18 @@ class MissionListActivity : AppCompatActivity() {
         }
     }
 
-    private fun subscribeUi() {
+    private fun subscribeUi(binding: ActivityMissionListBinding) {
         val factory = InjectorUtil.provideMissionListViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(MissionListViewModel::class.java)
 
         viewModel.missions.observe(this, Observer {
             adapter.submitList(it)
+            binding.emptyMissionListTextView.visibility =
+                    if (it.isNotEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
         })
     }
 
