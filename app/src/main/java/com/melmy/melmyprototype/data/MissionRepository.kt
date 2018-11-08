@@ -1,12 +1,13 @@
 package com.melmy.melmyprototype.data
 
+import com.melmy.melmyprototype.model.DailyMission
 import com.melmy.melmyprototype.model.Mission
 import com.melmy.melmyprototype.utils.runOnIoThread
 
 class MissionRepository private constructor(
-        private val missionDao: MissionDao
+        private val missionDao: MissionDao,
+        private val dailyMissionDao: DailyMissionDao
 ) {
-
     fun createMission(mission: Mission) {
         runOnIoThread {
             missionDao.insertMission(mission)
@@ -22,15 +23,30 @@ class MissionRepository private constructor(
     fun getMissions() =
             missionDao.getAllMissions()
 
+    fun createDailyMission(mission: DailyMission) {
+        runOnIoThread {
+            dailyMissionDao.insertMission(mission)
+        }
+    }
+
+    fun removeDailyMission(mission: DailyMission) {
+        runOnIoThread {
+            dailyMissionDao.deleteMission(mission)
+        }
+    }
+
+    fun getDailyMissions() =
+            dailyMissionDao.getAllMissions()
+
     companion object {
 
         @Volatile
         var instance: MissionRepository? = null
 
-        fun getInstance(missionDao: MissionDao) =
+        fun getInstance(missionDao: MissionDao, dailyMissionDao: DailyMissionDao) =
                 instance ?: synchronized(this) {
                     instance
-                            ?: MissionRepository(missionDao).also { instance = it }
+                            ?: MissionRepository(missionDao, dailyMissionDao).also { instance = it }
                 }
     }
 }
