@@ -24,7 +24,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:id="@+id/back_image_view"
@@ -35,9 +36,8 @@
                         android:src="@drawable/ic_back" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/toolbar_title_left_padding"
                         android:paddingLeft="@dimen/toolbar_title_left_padding"
@@ -45,22 +45,6 @@
                         android:textColor="@android:color/white"
                         android:textSize="18sp"
                         tools:ignore="RtlSymmetry" />
-
-                    <ImageView
-                        android:id="@+id/add_mission_image_view"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:contentDescription="@null"
-                        android:padding="15dp"
-                        android:src="@drawable/ic_add" />
-
-                    <ImageView
-                        android:id="@+id/sort_missions_image_view"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:contentDescription="@null"
-                        android:padding="15dp"
-                        android:src="@drawable/ic_sort" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

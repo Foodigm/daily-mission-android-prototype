@@ -3,9 +3,8 @@ package com.melmy.melmyprototype.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -56,16 +55,36 @@ class MissionListActivity : AppCompatActivity() {
                         View.VISIBLE
                     }
         })
+
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_mission_list, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.item_add -> {
+                val intent = MissionAddActivity.createIntent(this)
+                startActivity(intent)
+            }
+            R.id.item_sort_by_day -> {
+
+            }
+            R.id.item_sort_by_name -> {
+
+            }
+            R.id.item_sort_by_rate -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
     private fun initToolbar(binding: ActivityMissionListBinding) {
         setSupportActionBar(binding.toolbar)
         binding.backImageView.setOnClickListener {
             finish()
-        }
-        binding.addMissionImageView.setOnClickListener {
-            val intent = MissionAddActivity.createIntent(this)
-            startActivity(intent)
         }
     }
 

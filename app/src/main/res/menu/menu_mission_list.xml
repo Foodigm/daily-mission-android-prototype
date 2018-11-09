@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/new_mission"
+        app:showAsAction="ifRoom" />
+    <item
+        android:checkable="true"
+        android:title="@string/hide_completed_missions"
+        app:showAsAction="never" />
+
+    <item
+        android:icon="@drawable/ic_sort"
+        android:title="@string/sort"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/item_sort_by_day"
+                android:title="@string/sort_by_day_of_week" />
+            <item
+                android:id="@+id/item_sort_by_rate"
+                android:title="@string/sort_by_completion_rate" />
+            <item
+                android:id="@+id/item_sort_by_name"
+                android:title="@string/sort_by_name" />
+        </menu>
+    </item>
+</menu>
