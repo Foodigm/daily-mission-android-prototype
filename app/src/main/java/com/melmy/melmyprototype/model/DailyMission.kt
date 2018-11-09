@@ -15,8 +15,7 @@ data class DailyMission(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id") val id: Long,
         @ColumnInfo(name = "mission_id") val missionId: Long,
-        @ColumnInfo(name = "type") val type: MissionType,
-        @ColumnInfo(name = "acc_minute") val accMinuteDaily: Int,
         @ColumnInfo(name = "date") val date: Calendar,
+        @ColumnInfo(name = "acc_minute") val accMinuteDaily: Int,
         @ColumnInfo(name = "acc_count") val accCountDaily: Int
 )
