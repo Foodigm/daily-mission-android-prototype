@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="timeMissionVisibility"
+            type="int" />
+
+        <variable
+            name="countMissionVisibility"
+            type="int" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,7 +78,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/add_mission_spinner"
+            android:id="@+id/mission_type_spinner"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="32dp"
@@ -88,7 +99,7 @@
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="@dimen/default_margin"
-            android:visibility="gone"
+            android:visibility="@{countMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/total_goal_count_text_view"
             app:layout_constraintEnd_toStartOf="@+id/total_goal_count_text_view"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +109,8 @@
                 android:id="@+id/total_goal_count_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/total_goal" />
+                android:hint="@string/total_goal"
+                android:inputType="numberDecimal|numberSigned" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -112,9 +124,9 @@
             android:text="@string/unit_count"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="@{countMissionVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_mission_spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/mission_type_spinner" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/daily_goal_count_edit_text_container"
@@ -124,7 +136,7 @@
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="@dimen/default_margin"
-            android:visibility="gone"
+            android:visibility="@{countMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/daily_goal_count_text_view"
             app:layout_constraintEnd_toStartOf="@+id/daily_goal_count_text_view"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +146,8 @@
                 android:id="@+id/daily_goal_count_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/daily_goal" />
+                android:hint="@string/daily_goal"
+                android:inputType="numberDecimal|numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +162,7 @@
             android:text="@string/unit_count"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="@{countMissionVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/total_goal_count_text_view" />
 
@@ -161,20 +174,23 @@
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/total_goal_minute_text_view"
-            app:layout_constraintEnd_toStartOf="@+id/total_goal_minute_text_view2"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/total_goal_hour_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="gone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/total_goal_hour_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/total_goal" />
+                android:hint="@string/total_goal"
+                android:inputType="numberDecimal|numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/total_goal_minute_text_view2"
+            android:id="@+id/total_goal_hour_text_view"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginEnd="8dp"
@@ -183,10 +199,12 @@
             android:text="@string/unit_hour"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/total_goal_minute_spinner"
             app:layout_constraintEnd_toStartOf="@+id/total_goal_minute_spinner"
             app:layout_constraintTop_toTopOf="@+id/total_goal_minute_spinner"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/total_goal_minute_spinner"
@@ -195,9 +213,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:spinnerMode="dialog"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/total_goal_minute_text_view"
             app:layout_constraintEnd_toStartOf="@+id/total_goal_minute_text_view"
-            app:layout_constraintTop_toTopOf="@+id/total_goal_minute_text_view" />
+            app:layout_constraintTop_toTopOf="@+id/total_goal_minute_text_view"
+            tools:visibility="gone" />
 
 
         <TextView
@@ -211,8 +231,10 @@
             android:text="@string/unit_minute"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daily_goal_count_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/daily_goal_count_text_view"
+            tools:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/daily_goal_hour_edit_text_container"
@@ -222,19 +244,22 @@
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/daily_goal_minute_text_view"
-            app:layout_constraintEnd_toStartOf="@+id/total_goal_hour_text_view"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/daily_goal_hour_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="gone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/daily_goal_hour_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/total_goal" />
+                android:hint="@string/total_goal"
+                android:inputType="numberDecimal|numberSigned" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/total_goal_hour_text_view"
+            android:id="@+id/daily_goal_hour_text_view"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginEnd="8dp"
@@ -243,21 +268,25 @@
             android:text="@string/unit_hour"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/total_goal_minute_spinner2"
-            app:layout_constraintEnd_toStartOf="@+id/total_goal_minute_spinner2"
-            app:layout_constraintTop_toTopOf="@+id/total_goal_minute_spinner2" />
+            android:visibility="@{timeMissionVisibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/daily_goal_minute_spinner"
+            app:layout_constraintEnd_toStartOf="@+id/daily_goal_minute_spinner"
+            app:layout_constraintTop_toTopOf="@+id/daily_goal_minute_spinner"
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/total_goal_minute_spinner2"
+            android:id="@+id/daily_goal_minute_spinner"
             android:layout_width="80dp"
             android:layout_height="56dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:spinnerMode="dialog"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/daily_goal_minute_text_view"
             app:layout_constraintEnd_toStartOf="@+id/daily_goal_minute_text_view"
             app:layout_constraintTop_toTopOf="@+id/daily_goal_minute_text_view"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/daily_goal_minute_text_view"
@@ -270,8 +299,10 @@
             android:text="@string/unit_minute"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="@{timeMissionVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/total_goal_minute_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/total_goal_minute_text_view"
+            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -285,7 +316,7 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintBottom_toTopOf="@+id/submit_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/daily_goal_minute_text_view"
@@ -343,7 +374,7 @@
 
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/submit_text_view"
             android:layout_width="0dp"
             android:layout_height="@dimen/default_text_view_height"
             android:background="@color/colorPrimary"
