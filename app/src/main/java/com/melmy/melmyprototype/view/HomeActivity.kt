@@ -3,7 +3,6 @@ package com.melmy.melmyprototype.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,9 +42,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        initToolbar(binding)
-        initDrawer(binding)
-        initView(binding)
+        setUpToolbar(binding)
+        setUpDrawer(binding)
+        setUpViews(binding)
         subscribeUi(binding)
 
 //        dbDebug()
@@ -86,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun initView(binding: ActivityHomeBinding) {
+    private fun setUpViews(binding: ActivityHomeBinding) {
         val factory = InjectorUtil.provideHomeViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
         adapter = DailyMissionsAdapter()
@@ -101,7 +100,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun initToolbar(binding: ActivityHomeBinding) {
+    private fun setUpToolbar(binding: ActivityHomeBinding) {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.menuImageView.setOnClickListener {
@@ -110,7 +109,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun initDrawer(binding: ActivityHomeBinding) {
+    private fun setUpDrawer(binding: ActivityHomeBinding) {
         binding.homeNavigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.mission_list ->
