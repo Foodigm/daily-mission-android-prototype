@@ -292,49 +292,49 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/picker_item_monday"
+                android:id="@+id/day_picker_item_monday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_monday" />
 
             <TextView
-                android:id="@+id/picker_item_tuesday"
+                android:id="@+id/day_picker_item_tuesday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_tuesday" />
 
             <TextView
-                android:id="@+id/picker_item_wednesday"
+                android:id="@+id/day_picker_item_wednesday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_wednesday" />
 
             <TextView
-                android:id="@+id/picker_item_thursday"
+                android:id="@+id/day_picker_item_thursday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_thursday" />
 
             <TextView
-                android:id="@+id/picker_item_friday"
+                android:id="@+id/day_picker_item_friday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_friday" />
 
             <TextView
-                android:id="@+id/picker_item_saturday"
+                android:id="@+id/day_picker_item_saturday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"
                 android:text="@string/day_of_week_picker_saturday" />
 
             <TextView
-                android:id="@+id/picker_item_sunday"
+                android:id="@+id/day_picker_item_sunday"
                 android:layout_width="@dimen/day_picker_cell_size"
                 android:layout_height="@dimen/day_picker_cell_size"
                 android:gravity="center"

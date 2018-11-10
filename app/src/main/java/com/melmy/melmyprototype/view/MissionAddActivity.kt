@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ActivityMissionAddBinding
+import kotlinx.android.synthetic.main.activity_mission_add.*
 
 class MissionAddActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMissionAddBinding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add)
@@ -20,6 +20,9 @@ class MissionAddActivity : AppCompatActivity() {
         with(binding) {
             backImageView.setOnClickListener {
                 finish()
+            }
+            day_picker_item_monday.setOnClickListener {
+
             }
         }
     }
