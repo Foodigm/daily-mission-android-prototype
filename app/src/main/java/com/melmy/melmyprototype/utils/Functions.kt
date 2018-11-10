@@ -1,7 +1,7 @@
 package com.melmy.melmyprototype.utils
 
-import com.melmy.melmyprototype.model.Mission
-import com.melmy.melmyprototype.model.MissionType
+import com.melmy.melmyprototype.data.Mission
+import com.melmy.melmyprototype.data.MissionType
 
 fun Mission.getAchievePercent() =
         if (this.type == MissionType.COUNT) {

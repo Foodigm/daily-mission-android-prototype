@@ -4,7 +4,7 @@
     package="com.melmy.melmyprototype">
 
     <application
-        android:name=".MyApplication"
+        android:name="com.melmy.melmyprototype.MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.SplashActivity">
+        <activity android:name="com.melmy.melmyprototype.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MissionAddActivity" />
-        <activity android:name=".view.MissionListActivity" />
-        <activity android:name=".view.MissionDetailActivity" />
-        <activity android:name=".view.HomeActivity" />
-        <activity android:name=".view.HistoryActivity" />
+        <activity android:name="com.melmy.melmyprototype.view.MissionAddActivity" />
+        <activity android:name="com.melmy.melmyprototype.view.MissionListActivity" />
+        <activity android:name="com.melmy.melmyprototype.view.MissionDetailActivity" />
+        <activity android:name="com.melmy.melmyprototype.view.HomeActivity" />
+        <activity android:name="com.melmy.melmyprototype.view.HistoryActivity" />
     </application>
 
 </manifest>

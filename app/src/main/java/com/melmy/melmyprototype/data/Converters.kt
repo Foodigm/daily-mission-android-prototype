@@ -1,7 +1,6 @@
 package com.melmy.melmyprototype.data
 
 import androidx.room.TypeConverter
-import com.melmy.melmyprototype.model.MissionType
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import java.util.*
 

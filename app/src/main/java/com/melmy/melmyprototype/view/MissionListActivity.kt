@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ActivityMissionListBinding
 import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
-import com.melmy.melmyprototype.model.Mission
+import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.utils.getAchievePercent
 import com.melmy.melmyprototype.viewmodel.MissionListViewModel

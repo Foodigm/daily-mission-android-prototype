@@ -3,25 +3,29 @@ package com.melmy.melmyprototype.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
+import com.melmy.melmyprototype.data.DailyMission
+import com.melmy.melmyprototype.data.Mission
+import com.melmy.melmyprototype.data.MissionType
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
+import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
+import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.viewmodel.HomeViewModel
 import java.util.*
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
-import com.melmy.melmyprototype.model.DailyMission
 
 class HomeActivity : AppCompatActivity() {
 
@@ -43,6 +47,27 @@ class HomeActivity : AppCompatActivity() {
         initDrawer(binding)
         initView(binding)
         subscribeUi(binding)
+
+//        dbDebug()
+    }
+
+    private fun dbDebug() {
+        val mission = Mission(
+                title = "mission1",
+                days = DayOfWeekSet().apply {
+                    monday = true
+                    wednesday = true
+                    friday = true
+                },
+                goalCountTotal = 10,
+                goalCountDaily = 3,
+                type = MissionType.COUNT
+        )
+        val dailyMission = DailyMission(
+                missionId = 1
+        )
+//        viewModel.missionRepository.createMission(mission)
+//        viewModel.missionRepository.createDailyMission(dailyMission)
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
@@ -54,7 +79,10 @@ class HomeActivity : AppCompatActivity() {
                     } else {
                         View.VISIBLE
                     }
-
+//            Log.d("sgc109", "subscibeUI! size : " + it.size)
+//            for(mission in it) {
+//                Log.d("sgc109", mission.toString())
+//            }
         })
     }
 
@@ -106,7 +134,7 @@ class DailyMissionsAdapter : ListAdapter<DailyMission, DailyMissionViewHolder>(D
 
     override fun onBindViewHolder(holder: DailyMissionViewHolder, position: Int) {
         val item = getItem(position)
-        with(holder.binding){
+        with(holder.binding) {
             missionTitleTextView.text
             missionCompletePercentTextView.text
         }
@@ -114,7 +142,7 @@ class DailyMissionsAdapter : ListAdapter<DailyMission, DailyMissionViewHolder>(D
 
 }
 
-class DailyMissionDiffCallback: DiffUtil.ItemCallback<DailyMission>() {
+class DailyMissionDiffCallback : DiffUtil.ItemCallback<DailyMission>() {
     override fun areItemsTheSame(oldItem: DailyMission, newItem: DailyMission): Boolean {
         return oldItem.id == newItem.id
     }

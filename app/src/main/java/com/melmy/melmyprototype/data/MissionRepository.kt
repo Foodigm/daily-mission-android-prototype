@@ -1,7 +1,5 @@
 package com.melmy.melmyprototype.data
 
-import com.melmy.melmyprototype.model.DailyMission
-import com.melmy.melmyprototype.model.Mission
 import com.melmy.melmyprototype.utils.runOnIoThread
 
 class MissionRepository private constructor(
@@ -36,7 +34,7 @@ class MissionRepository private constructor(
     }
 
     fun getDailyMissions() =
-            dailyMissionDao.getAllMissions()
+            dailyMissionDao.getAllDailyMissionsJoined()
 
     companion object {
 
