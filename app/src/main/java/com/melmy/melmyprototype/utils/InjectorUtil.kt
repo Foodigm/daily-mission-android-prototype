@@ -4,6 +4,7 @@ import android.content.Context
 import com.melmy.melmyprototype.data.AppDatabase
 import com.melmy.melmyprototype.data.MissionRepository
 import com.melmy.melmyprototype.viewmodel.HomeViewModelFactory
+import com.melmy.melmyprototype.viewmodel.MissionAddViewModelFactory
 import com.melmy.melmyprototype.viewmodel.MissionListViewModelFactory
 
 object InjectorUtil {
@@ -26,5 +27,11 @@ object InjectorUtil {
     ): HomeViewModelFactory {
         val missionRepository = getMissionRepository(context)
         return HomeViewModelFactory(missionRepository)
+    }
+
+    fun provideMissionAddViewModelFactory(
+            context: Context
+    ): MissionAddViewModelFactory {
+        return MissionAddViewModelFactory(getMissionRepository(context))
     }
 }
