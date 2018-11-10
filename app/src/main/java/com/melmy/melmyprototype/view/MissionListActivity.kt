@@ -3,6 +3,7 @@ package com.melmy.melmyprototype.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -28,12 +29,18 @@ class MissionListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMissionListBinding = DataBindingUtil.setContentView(this, R.layout.activity_mission_list)
 
-        initToolbar(binding)
-        initView(binding)
+        setUpToolbar(binding)
+        setUpViews(binding)
+        setUpViewModel()
         subscribeUi(binding)
     }
 
-    private fun initView(binding: ActivityMissionListBinding) {
+    private fun setUpViewModel() {
+        val factory = InjectorUtil.provideMissionListViewModelFactory(this)
+        viewModel = ViewModelProviders.of(this, factory).get(MissionListViewModel::class.java)
+    }
+
+    private fun setUpViews(binding: ActivityMissionListBinding) {
         adapter = MissionListAdapter()
 
         with(binding) {
@@ -42,10 +49,8 @@ class MissionListActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi(binding: ActivityMissionListBinding) {
-        val factory = InjectorUtil.provideMissionListViewModelFactory(this)
-        viewModel = ViewModelProviders.of(this, factory).get(MissionListViewModel::class.java)
-
         viewModel.missions.observe(this, Observer {
+            Log.d("sgc109", "subscibeUi!")
             adapter.submitList(it)
             binding.emptyMissionListTextView.visibility =
                     if (it.isNotEmpty()) {
@@ -80,7 +85,7 @@ class MissionListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun initToolbar(binding: ActivityMissionListBinding) {
+    private fun setUpToolbar(binding: ActivityMissionListBinding) {
         setSupportActionBar(binding.toolbar)
         binding.backImageView.setOnClickListener {
             finish()
@@ -104,6 +109,7 @@ class MissionListAdapter : ListAdapter<Mission, MissionListViewHolder>(MissionDi
     override fun onBindViewHolder(holder: MissionListViewHolder, position: Int) {
         val item = getItem(position)
 
+        Log.d("sgc109", "onBind!")
         with(holder.binding) {
             missionItemTitle.text = item.title
             missionItemProgressBar.progress = item.getAchievePercent()
