@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.melmy.melmyprototype.utils.DayOfWeekSet
+import java.util.*
 
 @Entity(tableName = "missions")
 data class Mission(
@@ -12,6 +13,7 @@ data class Mission(
         @ColumnInfo(name = "title") val title: String,
         @ColumnInfo(name = "is_completed") val isCompleted: Boolean,
         @ColumnInfo(name = "days") val days: DayOfWeekSet,
+        @ColumnInfo(name = "completed_date") val completedDate: Calendar,
         @ColumnInfo(name = "type") val type: MissionType,
         @ColumnInfo(name = "goal_minute_total") val goalMinuteTotal: Int,
         @ColumnInfo(name = "goal_minute_daily") val goalMinuteDaily: Int,
