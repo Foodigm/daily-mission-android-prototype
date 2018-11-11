@@ -3,10 +3,14 @@ package com.melmy.melmyprototype.missionadd
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.melmy.melmyprototype.R
@@ -17,16 +21,18 @@ import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 
 class MissionAddActivity : AppCompatActivity() {
-    val dayOfWeekSet = DayOfWeekSet()
+    private val dayOfWeekSet = DayOfWeekSet()
     lateinit var viewModel: MissionAddViewModel
+    lateinit var binding: ActivityMissionAddBinding
+    var initTextColor = Color.BLACK
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMissionAddBinding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add)
 
-        setUpViews(binding)
+        setUpViews()
         setUpViewModel()
-        debug(binding)
+        debug()
     }
 
     private fun setUpViewModel() {
@@ -34,7 +40,7 @@ class MissionAddActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(MissionAddViewModel::class.java)
     }
 
-    fun setUpViews(binding: ActivityMissionAddBinding) {
+    fun setUpViews() {
         with(binding) {
             countMissionVisibility = View.VISIBLE
             timeMissionVisibility = View.GONE
@@ -44,8 +50,10 @@ class MissionAddActivity : AppCompatActivity() {
             }
 
             submitTextView.setOnClickListener {
-                submitMission(this)
+                submitMission()
             }
+
+            setUpDayPicker()
 
             missionTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -70,14 +78,64 @@ class MissionAddActivity : AppCompatActivity() {
         }
     }
 
+    private fun setUpDayPicker() {
+        with(binding) {
+            dayPickerItemMonday.setOnClickListener {
+                dayOfWeekSet.toggleMonday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemTuesday.setOnClickListener {
+                dayOfWeekSet.toggleTuesday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemWednesday.setOnClickListener {
+                dayOfWeekSet.toggleWednesday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemThursday.setOnClickListener {
+                dayOfWeekSet.toggleThursday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemFriday.setOnClickListener {
+                dayOfWeekSet.toggleFriday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemSaturday.setOnClickListener {
+                dayOfWeekSet.toggleSaturday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+            dayPickerItemSunday.setOnClickListener {
+                dayOfWeekSet.toggleSunday()
+                toggleDayPickerBgColor(it as TextView)
+            }
+        }
+    }
+
+    private fun toggleDayPickerBgColor(textView: TextView) {
+        val color = (textView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT
+        val colorFilled = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
+        val colorEmpty  = 0xffffffff.toInt()
+        when(color) {
+            colorFilled -> {
+                textView.setBackgroundColor(colorEmpty)
+                textView.setTextColor(initTextColor)
+            }
+            else -> {
+                initTextColor = textView.currentTextColor
+                textView.setBackgroundColor(colorFilled)
+                textView.setTextColor(Color.WHITE)
+            }
+        }
+    }
+
     @SuppressLint("SetTextI18n")
-    fun debug(binding: ActivityMissionAddBinding) {
+    fun debug() {
         binding.missionTitleEditText.setText("테스트 미션")
         binding.totalGoalCountEditText.setText("10")
         binding.dailyGoalCountEditText.setText("3")
     }
 
-    fun submitMission(binding: ActivityMissionAddBinding) {
+    fun submitMission() {
         val title = binding.missionTitleEditText.text.toString()
         val newMission = when (binding.missionTypeSpinner.selectedItemPosition) {
             SPINNER_OPTION_COUNT_MISSION -> {

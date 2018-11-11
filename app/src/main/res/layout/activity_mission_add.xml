@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/total_goal"
-                android:inputType="numberDecimal|numberSigned" />
+                android:inputType="numberSigned" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/daily_goal"
-                android:inputType="numberDecimal|numberSigned" />
+                android:inputType="numberSigned" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

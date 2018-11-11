@@ -46,4 +46,32 @@ class DayOfWeekSet {
 
         return bitmask
     }
+
+    fun toggleMonday() {
+        monday = !monday
+    }
+
+    fun toggleTuesday() {
+        tuesday = !tuesday
+    }
+
+    fun toggleWednesday() {
+        wednesday = !wednesday
+    }
+
+    fun toggleThursday() {
+        thursday = !thursday
+    }
+
+    fun toggleFriday() {
+        friday = !friday
+    }
+
+    fun toggleSaturday() {
+        saturday = !saturday
+    }
+
+    fun toggleSunday() {
+        sunday = !sunday
+    }
 }
