@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
@@ -45,6 +46,7 @@ class MissionListActivity : AppCompatActivity() {
 
         with(binding) {
             recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this@MissionListActivity, RecyclerView.VERTICAL, false)
         }
     }
 
@@ -68,7 +70,7 @@ class MissionListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             R.id.item_add -> {
                 val intent = MissionAddActivity.createIntent(this)
                 startActivity(intent)
@@ -85,6 +87,7 @@ class MissionListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun setUpToolbar(binding: ActivityMissionListBinding) {
         setSupportActionBar(binding.toolbar)
         binding.backImageView.setOnClickListener {

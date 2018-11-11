@@ -1,5 +1,6 @@
 package com.melmy.melmyprototype.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -70,6 +71,7 @@ class MissionAddActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     fun debug(binding: ActivityMissionAddBinding) {
         binding.missionTitleEditText.setText("테스트 미션")
         binding.totalGoalCountEditText.setText("10")
@@ -78,8 +80,8 @@ class MissionAddActivity : AppCompatActivity() {
 
     fun submitMission(binding: ActivityMissionAddBinding) {
         val title = binding.missionTitleEditText.text.toString()
-        val newMission = when (binding.missionTypeSpinner.selectedItem) {
-            SPINNER_OPTION_COUNT_MISSION -> {
+        val newMission = when (binding.missionTypeSpinner.selectedItemPosition) {
+            SPINNER_OPTION_COUNT_MISSION-> {
                 Mission(
                         title = title,
                         days = dayOfWeekSet,
