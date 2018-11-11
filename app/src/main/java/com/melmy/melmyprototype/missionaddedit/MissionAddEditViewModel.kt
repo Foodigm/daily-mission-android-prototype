@@ -1,9 +1,9 @@
-package com.melmy.melmyprototype.missionadd
+package com.melmy.melmyprototype.missionaddedit
 
 import androidx.lifecycle.ViewModel
 import com.melmy.melmyprototype.data.MissionRepository
 
-class MissionAddViewModel(
+class MissionAddEditViewModel(
         val missionRepository: MissionRepository
 ) : ViewModel() {
 

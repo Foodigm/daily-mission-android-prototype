@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.missionadd
+package com.melmy.melmyprototype.missionaddedit
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -20,9 +20,9 @@ import com.melmy.melmyprototype.databinding.ActivityMissionAddBinding
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 
-class MissionAddActivity : AppCompatActivity() {
+class MissionAddEditActivity : AppCompatActivity() {
     private val dayOfWeekSet = DayOfWeekSet()
-    lateinit var viewModel: MissionAddViewModel
+    lateinit var viewModel: MissionAddEditViewModel
     lateinit var binding: ActivityMissionAddBinding
     var initTextColor = Color.BLACK
 
@@ -37,7 +37,7 @@ class MissionAddActivity : AppCompatActivity() {
 
     private fun setUpViewModel() {
         val factory = InjectorUtil.provideMissionAddViewModelFactory(this)
-        viewModel = ViewModelProviders.of(this, factory).get(MissionAddViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(MissionAddEditViewModel::class.java)
     }
 
     fun setUpViews() {
@@ -169,7 +169,7 @@ class MissionAddActivity : AppCompatActivity() {
         const val SPINNER_OPTION_COUNT_MISSION = 0
         const val SPINNER_OPTION_TIME_MISSION = 1
         fun createIntent(context: Context): Intent {
-            val intent = Intent(context, MissionAddActivity::class.java)
+            val intent = Intent(context, MissionAddEditActivity::class.java)
             return intent
         }
     }
