@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
-import com.melmy.melmyprototype.missionadd.MissionAddActivity
+import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
 import com.melmy.melmyprototype.databinding.ActivityMissionListBinding
 import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
 import com.melmy.melmyprototype.data.Mission
+import com.melmy.melmyprototype.missiondetail.MissionDetailActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.utils.getAchievePercent
 
@@ -43,7 +44,21 @@ class MissionListActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
-        adapter = MissionListAdapter()
+        adapter = MissionListAdapter(object : MissionItemCallback {
+            override fun deleteMission(missionId: Long) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun editMission(missionId: Long) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun openMissionDetail(missionId: Long) {
+                val intent = MissionDetailActivity.newInstance(this@MissionListActivity, missionId)
+                startActivity(intent)
+            }
+
+        })
 
         with(binding) {
             recyclerView.adapter = adapter
@@ -70,6 +85,12 @@ class MissionListActivity : AppCompatActivity() {
         })
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_mission_list, menu)
         return super.onCreateOptionsMenu(menu)
@@ -78,7 +99,7 @@ class MissionListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_add -> {
-                val intent = MissionAddActivity.createIntent(this)
+                val intent = MissionAddEditActivity.createIntent(this)
                 startActivity(intent)
             }
             R.id.item_filter_all -> {
@@ -108,8 +129,9 @@ class MissionListActivity : AppCompatActivity() {
 
     private fun setUpToolbar() {
         setSupportActionBar(binding.toolbar)
-        binding.backImageView.setOnClickListener {
-            finish()
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_back)
         }
     }
 
@@ -121,7 +143,7 @@ class MissionListActivity : AppCompatActivity() {
     }
 }
 
-class MissionListAdapter : ListAdapter<Mission, MissionListViewHolder>(MissionDiffCallback()) {
+class MissionListAdapter(val missionItemCallback: MissionItemCallback) : ListAdapter<Mission, MissionListViewHolder>(MissionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MissionListViewHolder {
         Log.d("sgc109", "onCreate!")
         val binding = ListItemAllMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -135,6 +157,9 @@ class MissionListAdapter : ListAdapter<Mission, MissionListViewHolder>(MissionDi
         with(holder.binding) {
             missionItemTitle.text = item.title
             missionItemProgressBar.progress = item.getAchievePercent()
+            container.setOnClickListener {
+                missionItemCallback.openMissionDetail(item.id)
+            }
         }
     }
 }

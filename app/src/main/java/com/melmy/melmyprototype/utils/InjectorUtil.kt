@@ -4,7 +4,8 @@ import android.content.Context
 import com.melmy.melmyprototype.data.AppDatabase
 import com.melmy.melmyprototype.data.MissionRepository
 import com.melmy.melmyprototype.home.HomeViewModelFactory
-import com.melmy.melmyprototype.missionadd.MissionAddViewModelFactory
+import com.melmy.melmyprototype.missionaddedit.MissionAddEditViewModelFactory
+import com.melmy.melmyprototype.missiondetail.MissionDetailViewModelFactory
 import com.melmy.melmyprototype.missionlist.MissionListViewModelFactory
 
 object InjectorUtil {
@@ -31,7 +32,13 @@ object InjectorUtil {
 
     fun provideMissionAddViewModelFactory(
             context: Context
-    ): MissionAddViewModelFactory {
-        return MissionAddViewModelFactory(getMissionRepository(context))
+    ): MissionAddEditViewModelFactory {
+        return MissionAddEditViewModelFactory(getMissionRepository(context))
+    }
+
+    fun provideMissionDetailViewModelFactory(
+            context: Context
+    ): MissionDetailViewModelFactory {
+        return MissionDetailViewModelFactory(getMissionRepository(context))
     }
 }
