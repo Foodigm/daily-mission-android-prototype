@@ -20,10 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.melmy.melmyprototype.view.MissionAddActivity" />
-        <activity android:name="com.melmy.melmyprototype.view.MissionListActivity" />
-        <activity android:name="com.melmy.melmyprototype.view.MissionDetailActivity" />
-        <activity android:name="com.melmy.melmyprototype.view.HomeActivity" />
+        <activity android:name="com.melmy.melmyprototype.missionadd.MissionAddActivity" />
+        <activity android:name="com.melmy.melmyprototype.missionlist.MissionListActivity" />
+        <activity android:name="com.melmy.melmyprototype.missiondetail.MissionDetailActivity" />
+        <activity android:name="com.melmy.melmyprototype.home.HomeActivity" />
         <activity android:name="com.melmy.melmyprototype.view.HistoryActivity" />
     </application>
 

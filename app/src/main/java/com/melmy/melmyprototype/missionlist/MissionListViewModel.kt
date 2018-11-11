@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.viewmodel
+package com.melmy.melmyprototype.missionlist
 
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel

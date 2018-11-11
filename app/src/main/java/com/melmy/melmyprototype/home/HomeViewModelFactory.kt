@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.viewmodel
+package com.melmy.melmyprototype.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

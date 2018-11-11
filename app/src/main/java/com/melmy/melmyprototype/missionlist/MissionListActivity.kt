@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.view
+package com.melmy.melmyprototype.missionlist
 
 import android.content.Context
 import android.content.Intent
@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
+import com.melmy.melmyprototype.missionadd.MissionAddActivity
 import com.melmy.melmyprototype.databinding.ActivityMissionListBinding
 import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.utils.getAchievePercent
-import com.melmy.melmyprototype.viewmodel.MissionListViewModel
 
 class MissionListActivity : AppCompatActivity() {
 

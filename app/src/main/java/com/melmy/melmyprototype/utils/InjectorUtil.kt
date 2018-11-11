@@ -3,9 +3,9 @@ package com.melmy.melmyprototype.utils
 import android.content.Context
 import com.melmy.melmyprototype.data.AppDatabase
 import com.melmy.melmyprototype.data.MissionRepository
-import com.melmy.melmyprototype.viewmodel.HomeViewModelFactory
-import com.melmy.melmyprototype.viewmodel.MissionAddViewModelFactory
-import com.melmy.melmyprototype.viewmodel.MissionListViewModelFactory
+import com.melmy.melmyprototype.home.HomeViewModelFactory
+import com.melmy.melmyprototype.missionadd.MissionAddViewModelFactory
+import com.melmy.melmyprototype.missionlist.MissionListViewModelFactory
 
 object InjectorUtil {
 

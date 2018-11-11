@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.view
+package com.melmy.melmyprototype.home
 
 import android.content.Context
 import android.content.Intent
@@ -23,7 +23,8 @@ import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
-import com.melmy.melmyprototype.viewmodel.HomeViewModel
+import com.melmy.melmyprototype.view.HistoryActivity
+import com.melmy.melmyprototype.missionlist.MissionListActivity
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {
@@ -78,10 +79,6 @@ class HomeActivity : AppCompatActivity() {
                     } else {
                         View.VISIBLE
                     }
-//            Log.d("sgc109", "subscibeUI! size : " + it.size)
-//            for(mission in it) {
-//                Log.d("sgc109", mission.toString())
-//            }
         })
     }
 

@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.view
+package com.melmy.melmyprototype.missiondetail
 
 import android.content.Context
 import android.content.Intent

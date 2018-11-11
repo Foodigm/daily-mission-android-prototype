@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.view
+package com.melmy.melmyprototype.missionadd
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,7 +15,6 @@ import com.melmy.melmyprototype.data.MissionType
 import com.melmy.melmyprototype.databinding.ActivityMissionAddBinding
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
-import com.melmy.melmyprototype.viewmodel.MissionAddViewModel
 
 class MissionAddActivity : AppCompatActivity() {
     val dayOfWeekSet = DayOfWeekSet()
@@ -81,7 +80,7 @@ class MissionAddActivity : AppCompatActivity() {
     fun submitMission(binding: ActivityMissionAddBinding) {
         val title = binding.missionTitleEditText.text.toString()
         val newMission = when (binding.missionTypeSpinner.selectedItemPosition) {
-            SPINNER_OPTION_COUNT_MISSION-> {
+            SPINNER_OPTION_COUNT_MISSION -> {
                 Mission(
                         title = title,
                         days = dayOfWeekSet,

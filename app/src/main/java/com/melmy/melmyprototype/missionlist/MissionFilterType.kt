@@ -1,4 +1,4 @@
-package com.melmy.melmyprototype.viewmodel
+package com.melmy.melmyprototype.missionlist
 
 enum class MissionFilterType {
     ALL_MISSIONS,
