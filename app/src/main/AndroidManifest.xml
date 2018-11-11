@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.melmy.melmyprototype.missionadd.MissionAddActivity" />
+        <activity android:name="com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity" />
         <activity android:name="com.melmy.melmyprototype.missionlist.MissionListActivity" />
         <activity android:name="com.melmy.melmyprototype.missiondetail.MissionDetailActivity" />
         <activity android:name="com.melmy.melmyprototype.home.HomeActivity" />
