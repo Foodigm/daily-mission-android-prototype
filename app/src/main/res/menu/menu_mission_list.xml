@@ -7,9 +7,22 @@
         android:title="@string/new_mission"
         app:showAsAction="ifRoom" />
     <item
-        android:checkable="true"
-        android:title="@string/hide_completed_missions"
-        app:showAsAction="never" />
+        android:id="@+id/item_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/item_filter_all"
+                android:title="@string/filter_all" />
+            <item
+                android:id="@+id/item_filter_active"
+                android:title="@string/filter_active" />
+            <item
+                android:id="@+id/item_filter_completed"
+                android:title="@string/filter_completed" />
+        </menu>
+    </item>
 
     <item
         android:icon="@drawable/ic_sort"

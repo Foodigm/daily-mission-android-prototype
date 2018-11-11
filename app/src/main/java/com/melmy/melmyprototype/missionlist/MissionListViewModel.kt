@@ -1,6 +1,7 @@
 package com.melmy.melmyprototype.missionlist
 
-import androidx.lifecycle.Transformations
+import android.util.Log
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
@@ -8,17 +9,31 @@ import com.melmy.melmyprototype.data.MissionRepository
 class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel() {
     var currentFilter = MissionFilterType.ACTIVE_MISSIONS
     var currentOrder = MissionSortType.SORT_BY_NAME
-    val missions = Transformations.map(missionRepository.getMissions()) {
-        val list = sortMissions(it, currentOrder)
-        filterMissions(list, currentFilter)
+    val dbMissions = missionRepository.getMissions()
+    val missions = MediatorLiveData<List<Mission>>()
+
+    init {
+        missions.addSource(dbMissions) { it ->
+            it?.let {
+                Log.d("sgc109", "addSource!")
+                val list = sortMissions(it, currentOrder)
+                missions.value = filterMissions(list, currentFilter)
+            }
+        }
     }
 
-    fun rearrangeMissions(newOrder: MissionSortType) {
-    }
+    fun changeOrder(newOrder: MissionSortType) =
+            dbMissions.value?.let {
+                val list = sortMissions(it, newOrder)
+                missions.value = filterMissions(list, currentFilter)
+            }.also {
+                currentOrder = newOrder
+            }
 
     fun changeFilter(newFilter: MissionFilterType) =
-            missions.value?.let {
-                filterMissions(it, newFilter)
+            dbMissions.value?.let {
+                val list = sortMissions(it, currentOrder)
+                missions.value = filterMissions(list, newFilter)
             }.also {
                 currentFilter = newFilter
             }

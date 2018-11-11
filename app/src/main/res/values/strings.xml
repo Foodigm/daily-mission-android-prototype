@@ -25,12 +25,18 @@
     <string name="daily_mission">오늘의 미션</string>
     <string name="daily_complete_percent">%d %</string>
     <string name="empty_mission_list">미션이 없습니다</string>
+    <string name="empty_completed_mission_list">완료된 미션이 없습니다</string>
+    <string name="empty_active_mission_list">진행중인 미션이 없습니다</string>
     <string name="hide_completed_missions">완료된 미션 숨기기</string>
     <string name="sort">정렬</string>
     <string name="sort_by_day_of_week">요일 별로</string>
     <string name="sort_by_completion_rate">달성도 순으로</string>
     <string name="sort_by_name">이름 순으로</string>
     <string name="new_mission">미션 등록</string>
+    <string name="filter">필터</string>
+    <string name="filter_all">전체</string>
+    <string name="filter_active">진행중</string>
+    <string name="filter_completed">완료</string>
     <string-array name="mission_types">
         <item>@string/mission_type_count</item>
         <item>@string/mission_type_time</item>

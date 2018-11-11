@@ -25,15 +25,16 @@ class MissionListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MissionListViewModel
     private lateinit var adapter: ListAdapter<Mission, MissionListViewHolder>
+    private lateinit var binding: ActivityMissionListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMissionListBinding = DataBindingUtil.setContentView(this, R.layout.activity_mission_list)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_list)
 
-        setUpToolbar(binding)
-        setUpViews(binding)
+        setUpToolbar()
+        setUpViews()
         setUpViewModel()
-        subscribeUi(binding)
+        subscribeUi()
     }
 
     private fun setUpViewModel() {
@@ -41,7 +42,7 @@ class MissionListActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(MissionListViewModel::class.java)
     }
 
-    private fun setUpViews(binding: ActivityMissionListBinding) {
+    private fun setUpViews() {
         adapter = MissionListAdapter()
 
         with(binding) {
@@ -50,10 +51,16 @@ class MissionListActivity : AppCompatActivity() {
         }
     }
 
-    private fun subscribeUi(binding: ActivityMissionListBinding) {
+    private fun subscribeUi() {
         viewModel.missions.observe(this, Observer {
             Log.d("sgc109", "subscibeUi!")
             adapter.submitList(it)
+            binding.recyclerView.visibility =
+                    if (it.isNotEmpty()) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
             binding.emptyMissionListTextView.visibility =
                     if (it.isNotEmpty()) {
                         View.GONE
@@ -61,7 +68,6 @@ class MissionListActivity : AppCompatActivity() {
                         View.VISIBLE
                     }
         })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -74,6 +80,18 @@ class MissionListActivity : AppCompatActivity() {
             R.id.item_add -> {
                 val intent = MissionAddActivity.createIntent(this)
                 startActivity(intent)
+            }
+            R.id.item_filter_all -> {
+                binding.emptyMissionListTextView.text = getString(R.string.empty_active_mission_list)
+                viewModel.changeFilter(MissionFilterType.ALL_MISSIONS)
+            }
+            R.id.item_filter_active -> {
+                binding.emptyMissionListTextView.text = getString(R.string.empty_active_mission_list)
+                viewModel.changeFilter(MissionFilterType.ACTIVE_MISSIONS)
+            }
+            R.id.item_filter_completed -> {
+                binding.emptyMissionListTextView.text = getString(R.string.empty_completed_mission_list)
+                viewModel.changeFilter(MissionFilterType.COMPLETED_MISSIONS)
             }
             R.id.item_sort_by_day -> {
 
@@ -88,7 +106,7 @@ class MissionListActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setUpToolbar(binding: ActivityMissionListBinding) {
+    private fun setUpToolbar() {
         setSupportActionBar(binding.toolbar)
         binding.backImageView.setOnClickListener {
             finish()
@@ -105,6 +123,7 @@ class MissionListActivity : AppCompatActivity() {
 
 class MissionListAdapter : ListAdapter<Mission, MissionListViewHolder>(MissionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MissionListViewHolder {
+        Log.d("sgc109", "onCreate!")
         val binding = ListItemAllMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MissionListViewHolder(binding)
     }
