@@ -13,4 +13,4 @@ data class DailyMissionJoined(
         @ColumnInfo(name = "type") val type: MissionType,
         @ColumnInfo(name = "goal_minute_daily") val goalMinuteDaily: Int = 0,
         @ColumnInfo(name = "goal_count_daily") val goalCountDaily: Int = 0
-        )
+)

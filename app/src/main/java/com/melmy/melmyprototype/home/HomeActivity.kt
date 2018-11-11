@@ -21,10 +21,10 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionType
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
+import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
-import com.melmy.melmyprototype.missionlist.MissionListActivity
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {

@@ -7,9 +7,9 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
 
 class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel() {
-    var currentFilter = MissionFilterType.ACTIVE_MISSIONS
-    var currentOrder = MissionSortType.SORT_BY_NAME
-    val dbMissions = missionRepository.getMissions()
+    private var currentFilter = MissionFilterType.ACTIVE_MISSIONS
+    private var currentOrder = MissionSortType.SORT_BY_NAME
+    private val dbMissions = missionRepository.getMissions()
     val missions = MediatorLiveData<List<Mission>>()
 
     init {
@@ -38,13 +38,13 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
                 currentFilter = newFilter
             }
 
-    fun sortMissions(list: List<Mission>, sortType: MissionSortType): List<Mission> =
+    private fun sortMissions(list: List<Mission>, sortType: MissionSortType): List<Mission> =
             when (sortType) {
                 MissionSortType.SORT_BY_NAME -> list.sortedWith(compareBy({ it.title }))
                 else -> list
             }
 
-    fun filterMissions(list: List<Mission>, filter: MissionFilterType) =
+    private fun filterMissions(list: List<Mission>, filter: MissionFilterType) =
             list.filter {
                 when (filter) {
                     MissionFilterType.ACTIVE_MISSIONS -> !it.isCompleted

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.melmy.melmyprototype.data.MissionRepository
 
 class MissionDetailViewModelFactory(
-        val repository: MissionRepository
+        private val repository: MissionRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

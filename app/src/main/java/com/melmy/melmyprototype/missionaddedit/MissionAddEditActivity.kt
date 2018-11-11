@@ -40,7 +40,7 @@ class MissionAddEditActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(MissionAddEditViewModel::class.java)
     }
 
-    fun setUpViews() {
+    private fun setUpViews() {
         with(binding) {
             countMissionVisibility = View.VISIBLE
             timeMissionVisibility = View.GONE
@@ -114,8 +114,8 @@ class MissionAddEditActivity : AppCompatActivity() {
     private fun toggleDayPickerBgColor(textView: TextView) {
         val color = (textView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT
         val colorFilled = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
-        val colorEmpty  = 0xffffffff.toInt()
-        when(color) {
+        val colorEmpty = 0xffffffff.toInt()
+        when (color) {
             colorFilled -> {
                 textView.setBackgroundColor(colorEmpty)
                 textView.setTextColor(initTextColor)
@@ -135,7 +135,7 @@ class MissionAddEditActivity : AppCompatActivity() {
         binding.dailyGoalCountEditText.setText("3")
     }
 
-    fun submitMission() {
+    private fun submitMission() {
         val title = binding.missionTitleEditText.text.toString()
         val newMission = when (binding.missionTypeSpinner.selectedItemPosition) {
             SPINNER_OPTION_COUNT_MISSION -> {

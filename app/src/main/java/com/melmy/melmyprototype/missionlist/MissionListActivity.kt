@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
-import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
+import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.databinding.ActivityMissionListBinding
 import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
-import com.melmy.melmyprototype.data.Mission
+import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
 import com.melmy.melmyprototype.missiondetail.MissionDetailActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.utils.getAchievePercent

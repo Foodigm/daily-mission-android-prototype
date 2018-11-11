@@ -33,6 +33,9 @@ class MissionRepository private constructor(
         }
     }
 
+    fun getMission(missionId: Long) =
+            missionDao.getMission(missionId)
+
     fun getDailyMissions() =
             dailyMissionDao.getAllDailyMissionsJoined()
 

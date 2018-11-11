@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.melmy.melmyprototype.data.MissionRepository
 
 class MissionDetailViewModel(
-        val repository: MissionRepository
+        private val repository: MissionRepository
 ) : ViewModel() {
 
 

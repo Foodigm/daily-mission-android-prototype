@@ -12,8 +12,8 @@ import com.melmy.melmyprototype.utils.InjectorUtil
 
 class MissionDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityMissionDetailBinding
-    lateinit var viewModel: MissionDetailViewModel
-    var missionId = 1L
+    private lateinit var viewModel: MissionDetailViewModel
+    private var missionId = 1L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
