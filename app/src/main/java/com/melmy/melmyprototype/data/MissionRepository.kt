@@ -33,8 +33,16 @@ class MissionRepository private constructor(
         }
     }
 
-    fun getMission(missionId: Long) =
-            missionDao.getMission(missionId)
+    fun getMission(missionId: Long, callback: MissionDataSource.GetMissionCallback) {
+        runOnIoThread {
+            val mission = missionDao.getMission(missionId)
+            if (mission != null) {
+                callback.onMissionLoaded(mission)
+            } else {
+                callback.onDataNotAvailable()
+            }
+        }
+    }
 
     fun getDailyMissions() =
             dailyMissionDao.getAllDailyMissionsJoined()

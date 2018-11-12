@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ActivityMissionDetailBinding
@@ -23,6 +24,11 @@ class MissionDetailActivity : AppCompatActivity() {
         loadExtras(savedInstanceState)
         setUpViewModel()
         setUpViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.start(missionId)
     }
 
     private fun setUpViewModel() {
@@ -44,12 +50,11 @@ class MissionDetailActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
-        val mission = viewModel.getMission(missionId)
+        binding.viewModel = viewModel
         with(binding) {
-            /* TODO */
+
         }
     }
-
 
     private fun loadExtras(savedInstanceState: Bundle?) {
         val saved = savedInstanceState ?: intent.extras

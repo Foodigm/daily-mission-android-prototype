@@ -15,7 +15,7 @@ interface MissionDao {
     fun getAllMissions(): LiveData<List<Mission>>
 
     @Query("SELECT * FROM missions WHERE id = :missionId")
-    fun getMission(missionId: Long): Mission
+    fun getMission(missionId: Long): Mission?
 
     @Delete
     fun deleteMission(mission: Mission)
