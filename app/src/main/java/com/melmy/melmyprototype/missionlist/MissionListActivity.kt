@@ -3,8 +3,9 @@ package com.melmy.melmyprototype.missionlist
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.widget.PopupMenu
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -45,8 +46,8 @@ class MissionListActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         adapter = MissionListAdapter(object : MissionItemCallback {
-            override fun deleteMission(missionId: Long) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            override fun deleteMission(mission: Mission) {
+                viewModel.deleteMission(mission)
             }
 
             override fun editMission(missionId: Long) {
@@ -68,7 +69,6 @@ class MissionListActivity : AppCompatActivity() {
 
     private fun subscribeUi() {
         viewModel.missions.observe(this, Observer {
-            Log.d("sgc109", "subscibeUi!")
             adapter.submitList(it)
             binding.recyclerView.visibility =
                     if (it.isNotEmpty()) {
@@ -143,22 +143,48 @@ class MissionListActivity : AppCompatActivity() {
     }
 }
 
-class MissionListAdapter(val missionItemCallback: MissionItemCallback) : ListAdapter<Mission, MissionListViewHolder>(MissionDiffCallback()) {
+class MissionListAdapter(
+        private val missionItemCallback: MissionItemCallback
+) : ListAdapter<Mission, MissionListViewHolder>(MissionDiffCallback()) {
+    lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MissionListViewHolder {
-        Log.d("sgc109", "onCreate!")
         val binding = ListItemAllMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
         return MissionListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MissionListViewHolder, position: Int) {
         val item = getItem(position)
 
-        Log.d("sgc109", "onBind!")
         with(holder.binding) {
             missionItemTitle.text = item.title
             missionItemProgressBar.progress = item.getAchievePercent()
             container.setOnClickListener {
                 missionItemCallback.openMissionDetail(item.id)
+            }
+            container.setOnLongClickListener { it ->
+                val popup = PopupMenu(context, holder.itemView)
+                popup.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.item_remove -> {
+                            val builder = AlertDialog.Builder(context)
+                            builder.setTitle(R.string.mission_remove_dialog_title)
+                                    .setPositiveButton(R.string.yes) { _, _ ->
+                                        missionItemCallback.deleteMission(item)
+                                    }
+                                    .setNegativeButton(R.string.no) { _, _ ->
+                                        // do nothing..
+                                    }
+                                    .show()
+
+                        }
+                    }
+                    true
+                }
+                popup.menuInflater.inflate(R.menu.menu_mission_list_pop_up, popup.menu)
+                popup.show()
+                true
             }
         }
     }

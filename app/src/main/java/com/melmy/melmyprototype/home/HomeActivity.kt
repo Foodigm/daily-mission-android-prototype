@@ -17,12 +17,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.data.DailyMission
-import com.melmy.melmyprototype.data.Mission
-import com.melmy.melmyprototype.data.MissionType
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.missionlist.MissionListActivity
-import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
 import java.util.*
@@ -47,27 +44,6 @@ class HomeActivity : AppCompatActivity() {
         setUpDrawer(binding)
         setUpViews(binding)
         subscribeUi(binding)
-
-//        dbDebug()
-    }
-
-    private fun dbDebug() {
-        val mission = Mission(
-                title = "mission1",
-                days = DayOfWeekSet().apply {
-                    monday = true
-                    wednesday = true
-                    friday = true
-                },
-                goalCountTotal = 10,
-                goalCountDaily = 3,
-                type = MissionType.COUNT
-        )
-        val dailyMission = DailyMission(
-                missionId = 1
-        )
-//        viewModel.missionRepository.createMission(mission)
-//        viewModel.missionRepository.createDailyMission(dailyMission)
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {

@@ -1,13 +1,13 @@
 package com.melmy.melmyprototype.utils
 
 class DayOfWeekSet {
-    var monday = false
-    var tuesday = false
-    var wednesday = false
-    var thursday = false
-    var friday = false
-    var saturday = false
-    var sunday = false
+    private var monday = false
+    private var tuesday = false
+    private var wednesday = false
+    private var thursday = false
+    private var friday = false
+    private var saturday = false
+    private var sunday = false
 
     constructor()
     constructor(bitmask: Int) {

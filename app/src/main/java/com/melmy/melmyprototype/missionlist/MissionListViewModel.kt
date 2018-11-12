@@ -1,6 +1,5 @@
 package com.melmy.melmyprototype.missionlist
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.melmy.melmyprototype.data.Mission
@@ -15,7 +14,6 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
     init {
         missions.addSource(dbMissions) { it ->
             it?.let {
-                Log.d("sgc109", "addSource!")
                 val list = sortMissions(it, currentOrder)
                 missions.value = filterMissions(list, currentFilter)
             }
@@ -52,4 +50,8 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
                     else -> true
                 }
             }
+
+    fun deleteMission(mission: Mission) {
+        missionRepository.removeMission(mission)
+    }
 }
