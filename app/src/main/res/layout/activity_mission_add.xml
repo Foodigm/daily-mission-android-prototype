@@ -59,7 +59,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mission_title_edit_text_container"
             android:layout_width="0dp"
-            android:layout_height="@dimen/default_text_view_height"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
@@ -72,21 +72,22 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mission_title_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/mission_name"
-                android:padding="16dp" />
+                android:layout_height="wrap_content"
+                android:hint="@string/mission_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/mission_type_spinner"
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="@dimen/default_margin"
             android:entries="@array/mission_types"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mission_title_edit_text_container" />
@@ -219,7 +220,6 @@
             app:layout_constraintTop_toTopOf="@+id/total_goal_minute_text_view"
             tools:visibility="gone" />
 
-
         <TextView
             android:id="@+id/total_goal_minute_text_view"
             android:layout_width="56dp"
@@ -304,74 +304,14 @@
             app:layout_constraintTop_toBottomOf="@+id/total_goal_minute_text_view"
             tools:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <com.melmy.melmyprototype.widget.DayPickerView
+            android:id="@+id/day_picker"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/submit_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daily_goal_minute_text_view"
-            app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/day_picker_item_monday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_monday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_tuesday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_tuesday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_wednesday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_wednesday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_thursday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_thursday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_friday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_friday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_saturday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_saturday" />
-
-            <TextView
-                android:id="@+id/day_picker_item_sunday"
-                android:layout_width="@dimen/day_picker_cell_size"
-                android:layout_height="@dimen/day_picker_cell_size"
-                android:gravity="center"
-                android:text="@string/day_of_week_picker_sunday" />
-        </LinearLayout>
-
+            app:layout_constraintTop_toBottomOf="@+id/daily_goal_minute_text_view"/>
 
         <TextView
             android:id="@+id/submit_text_view"

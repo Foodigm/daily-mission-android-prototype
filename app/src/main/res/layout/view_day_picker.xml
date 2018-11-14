@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_monday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_tuesday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_wednesday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_thursday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_friday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_saturday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+        <CheckedTextView
+            android:id="@+id/day_picker_item_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/selector_day_picker"
+            android:checkMark="@null"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:text="@string/day_of_week_picker_sunday"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+</layout>

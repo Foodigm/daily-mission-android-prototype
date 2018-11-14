@@ -21,10 +21,8 @@ import com.melmy.melmyprototype.utils.DayOfWeekSet
 import com.melmy.melmyprototype.utils.InjectorUtil
 
 class MissionAddEditActivity : AppCompatActivity() {
-    private val dayOfWeekSet = DayOfWeekSet()
     lateinit var viewModel: MissionAddEditViewModel
     lateinit var binding: ActivityMissionAddBinding
-    var initTextColor = Color.BLACK
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +51,6 @@ class MissionAddEditActivity : AppCompatActivity() {
                 submitMission()
             }
 
-            setUpDayPicker()
-
             missionTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -78,56 +74,6 @@ class MissionAddEditActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpDayPicker() {
-        with(binding) {
-            dayPickerItemMonday.setOnClickListener {
-                dayOfWeekSet.toggleMonday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemTuesday.setOnClickListener {
-                dayOfWeekSet.toggleTuesday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemWednesday.setOnClickListener {
-                dayOfWeekSet.toggleWednesday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemThursday.setOnClickListener {
-                dayOfWeekSet.toggleThursday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemFriday.setOnClickListener {
-                dayOfWeekSet.toggleFriday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemSaturday.setOnClickListener {
-                dayOfWeekSet.toggleSaturday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-            dayPickerItemSunday.setOnClickListener {
-                dayOfWeekSet.toggleSunday()
-                toggleDayPickerBgColor(it as TextView)
-            }
-        }
-    }
-
-    private fun toggleDayPickerBgColor(textView: TextView) {
-        val color = (textView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT
-        val colorFilled = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
-        val colorEmpty = 0xffffffff.toInt()
-        when (color) {
-            colorFilled -> {
-                textView.setBackgroundColor(colorEmpty)
-                textView.setTextColor(initTextColor)
-            }
-            else -> {
-                initTextColor = textView.currentTextColor
-                textView.setBackgroundColor(colorFilled)
-                textView.setTextColor(Color.WHITE)
-            }
-        }
-    }
-
     @SuppressLint("SetTextI18n")
     fun debug() {
         binding.missionTitleEditText.setText("테스트 미션")
@@ -137,6 +83,7 @@ class MissionAddEditActivity : AppCompatActivity() {
 
     private fun submitMission() {
         val title = binding.missionTitleEditText.text.toString()
+        val dayOfWeekSet = binding.dayPicker.dayOfWeekSet
         val newMission = when (binding.missionTypeSpinner.selectedItemPosition) {
             SPINNER_OPTION_COUNT_MISSION -> {
                 Mission(
