@@ -24,7 +24,7 @@ interface MissionDao {
     @Delete
     fun deleteDailyMission(dailyMission: DailyMission)
 
-    @Query("UPDATE missions SET acc_minute_total = acc_minute_total + :accMinute, acc_count_total = acc_count_total + :accCount")
+    @Query("UPDATE missions SET acc_minute_total = acc_minute_total + :accMinute, acc_count_total = acc_count_total + :accCount WHERE id = :missionId")
     fun accumulateDailyWork(missionId: Long, accMinute: Int, accCount: Int)
 
     @Transaction

@@ -47,15 +47,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
-        val today = Calendar.getInstance()
-        viewModel.dailyMissions.observe(this, Observer {
-            binding.emptyDailyMissionsTextView.visibility =
-                    if (it.isNotEmpty()) {
-                        View.GONE
-                    } else {
-                        View.VISIBLE
-                    }
-        })
     }
 
     private fun setUpViews(binding: ActivityHomeBinding) {
