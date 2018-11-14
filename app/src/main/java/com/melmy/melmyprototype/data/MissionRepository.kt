@@ -21,9 +21,12 @@ class MissionRepository private constructor(
     fun getMissions() =
             missionDao.getAllMissions()
 
-    fun createDailyMission(mission: DailyMission) {
+    fun getMissionsObservable() =
+            missionDao.getAllMissionsObservable()
+
+    fun insertDailyMissions(mission: List<DailyMission>) {
         runOnIoThread {
-            dailyMissionDao.insertMission(mission)
+            dailyMissionDao.insertMissions(mission)
         }
     }
 
@@ -41,6 +44,12 @@ class MissionRepository private constructor(
             } else {
                 callback.onDataNotAvailable()
             }
+        }
+    }
+
+    fun updateAccTimeOrCount(dailyMissions: List<DailyMissionJoined>) {
+        runOnIoThread {
+            missionDao.accumulateDailyWorkAndDelete(dailyMissions)
         }
     }
 

@@ -1,5 +1,7 @@
 package com.melmy.melmyprototype.utils
 
+import java.util.*
+
 class DayOfWeekSet {
     private var monday = false
     private var tuesday = false
@@ -45,6 +47,19 @@ class DayOfWeekSet {
         if (sunday) bitmask = bitmask or (1 shl 6)
 
         return bitmask
+    }
+
+    fun isTodayOn(): Boolean {
+        val calendar = Calendar.getInstance()
+        return when(calendar.get(Calendar.DAY_OF_WEEK)) {
+            Calendar.MONDAY -> monday == true
+            Calendar.TUESDAY -> tuesday == true
+            Calendar.WEDNESDAY -> wednesday == true
+            Calendar.THURSDAY -> thursday == true
+            Calendar.FRIDAY -> friday == true
+            Calendar.SATURDAY -> saturday == true
+            else -> sunday == true
+        }
     }
 
     fun toggleMonday() {
