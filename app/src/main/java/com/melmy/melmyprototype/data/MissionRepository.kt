@@ -10,12 +10,7 @@ class MissionRepository private constructor(
 
     fun createMission(mission: Mission) {
         runOnIoThread {
-            val dailyMission = DailyMission(missionId = mission.id)
-            db.runInTransaction {
-                /* TODO  mission 을 먼저 넣고나서 dailyMission 을 넣어야 Foreign Key 관련하여 에러가 안나기때문에 여기 수정해야됨*/
-                missionDao.insertMission(mission)
-                dailyMissionDao.insertMission(dailyMission)
-            }
+            missionDao.insertMission(mission)
         }
     }
 

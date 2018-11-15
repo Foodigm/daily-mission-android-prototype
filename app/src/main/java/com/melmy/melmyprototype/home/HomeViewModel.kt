@@ -30,47 +30,36 @@ class HomeViewModel(
                 .observeOn(AndroidSchedulers.mainThread())
                 .take(1)
                 .flatMap {
-                    var check = false
                     if (!it.isEmpty()) {
                         val date = it.get(0).dailyMission.createdDate
                         val today = Calendar.getInstance()
                         if (!isSameDay(date, today)) {
-                            check = true
                             missionRepository.updateAccTimeOrCount(it)
                         }
-                    } else check = true
-                    if (check) {
-                        missionRepository.getMissionsObservable()
-                    } else {
-                        Observable.just(it)
                     }
+                    missionRepository.getMissionsObservable()
                 }
                 .take(1)
                 .map {
-                    if (it.size > 0 && it.get(0) is Mission) {
-                        val missions = ArrayList<Mission>()
-                        for (mission in it as List<Mission>) {
-                            if (mission.days.isTodayOn() == true && mission.isCompleted != true) {
-                                missions.add(mission)
-                            }
+                    val missions = ArrayList<Mission>()
+                    for (mission in it) {
+                        if (mission.days.isTodayOn() == true && mission.isCompleted != true) {
+                            missions.add(mission)
                         }
-
-                        val dailyMissions = ArrayList<DailyMission>()
-                        val dailyMissionsJoined = ArrayList<DailyMissionJoined>()
-                        // dailyMission 의 List 만들어서 DB 에 insert 하고 observable 에 set
-                        for (item in missions) {
-                            val dailyMission = DailyMission(missionId = item.id)
-                            val dailyMissionJoined = DailyMissionJoined(dailyMission = dailyMission, title = item.title, type = item.type)
-                            dailyMissions.add(dailyMission)
-                            dailyMissionsJoined.add(dailyMissionJoined)
-                        }
-                        missionRepository.insertDailyMissions(dailyMissions)
-
-                        dailyMissionsJoined
-
-                    } else {
-                        it as List<DailyMissionJoined>
                     }
+
+                    val dailyMissions = ArrayList<DailyMission>()
+                    val dailyMissionsJoined = ArrayList<DailyMissionJoined>()
+                    // dailyMission 의 List 만들어서 DB 에 insert 하고 observable 에 set
+                    for (item in missions) {
+                        val dailyMission = DailyMission(missionId = item.id)
+                        val dailyMissionJoined = DailyMissionJoined(dailyMission = dailyMission, title = item.title, type = item.type)
+                        dailyMissions.add(dailyMission)
+                        dailyMissionsJoined.add(dailyMissionJoined)
+                    }
+                    missionRepository.insertDailyMissions(dailyMissions)
+
+                    dailyMissionsJoined
                 }
                 .subscribe {
                     dailyMissions.set(it)
