@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,7 +20,6 @@ import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
-import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -44,6 +41,11 @@ class HomeActivity : AppCompatActivity() {
         setUpDrawer(binding)
         setUpViews(binding)
         subscribeUi(binding)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.start()
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {

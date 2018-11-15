@@ -12,15 +12,20 @@
         android:title="@string/filter"
         app:showAsAction="ifRoom">
         <menu>
-            <item
-                android:id="@+id/item_filter_all"
-                android:title="@string/filter_all" />
-            <item
-                android:id="@+id/item_filter_active"
-                android:title="@string/filter_active" />
-            <item
-                android:id="@+id/item_filter_completed"
-                android:title="@string/filter_completed" />
+            <group
+                android:id="@+id/filter_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item_filter_all"
+                    android:checked="true"
+                    android:title="@string/filter_all" />
+                <item
+                    android:id="@+id/item_filter_active"
+                    android:title="@string/filter_active" />
+                <item
+                    android:id="@+id/item_filter_completed"
+                    android:title="@string/filter_completed" />
+            </group>
         </menu>
     </item>
 
@@ -29,15 +34,17 @@
         android:title="@string/sort"
         app:showAsAction="never">
         <menu>
-            <item
-                android:id="@+id/item_sort_by_day"
-                android:title="@string/sort_by_day_of_week" />
-            <item
-                android:id="@+id/item_sort_by_rate"
-                android:title="@string/sort_by_completion_rate" />
-            <item
-                android:id="@+id/item_sort_by_name"
-                android:title="@string/sort_by_name" />
+            <group
+                android:id="@+id/sort_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item_sort_by_name"
+                    android:checked="true"
+                    android:title="@string/sort_by_name" />
+                <item
+                    android:id="@+id/item_sort_by_rate"
+                    android:title="@string/sort_by_completion_rate" />
+            </group>
         </menu>
     </item>
 </menu>

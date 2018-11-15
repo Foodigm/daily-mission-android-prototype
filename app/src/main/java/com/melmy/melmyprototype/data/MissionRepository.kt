@@ -3,12 +3,19 @@ package com.melmy.melmyprototype.data
 import com.melmy.melmyprototype.utils.runOnIoThread
 
 class MissionRepository private constructor(
-        private val missionDao: MissionDao,
-        private val dailyMissionDao: DailyMissionDao
+        private val db: AppDatabase
 ) {
+    private val missionDao = db.missionDao()
+    private val dailyMissionDao = db.dailyMissionDao()
+
     fun createMission(mission: Mission) {
         runOnIoThread {
-            missionDao.insertMission(mission)
+            val dailyMission = DailyMission(missionId = mission.id)
+            db.runInTransaction {
+                /* TODO  mission 을 먼저 넣고나서 dailyMission 을 넣어야 Foreign Key 관련하여 에러가 안나기때문에 여기 수정해야됨*/
+                missionDao.insertMission(mission)
+                dailyMissionDao.insertMission(dailyMission)
+            }
         }
     }
 
@@ -24,9 +31,15 @@ class MissionRepository private constructor(
     fun getMissionsObservable() =
             missionDao.getAllMissionsObservable()
 
-    fun insertDailyMissions(mission: List<DailyMission>) {
+    fun insertDailyMissions(missions: List<DailyMission>) {
         runOnIoThread {
-            dailyMissionDao.insertMissions(mission)
+            dailyMissionDao.insertMissions(missions)
+        }
+    }
+
+    fun insertDailyMission(mission: DailyMission) {
+        runOnIoThread {
+            dailyMissionDao.insertMission(mission)
         }
     }
 
@@ -61,10 +74,10 @@ class MissionRepository private constructor(
         @Volatile
         var instance: MissionRepository? = null
 
-        fun getInstance(missionDao: MissionDao, dailyMissionDao: DailyMissionDao) =
+        fun getInstance(db: AppDatabase) =
                 instance ?: synchronized(this) {
                     instance
-                            ?: MissionRepository(missionDao, dailyMissionDao).also { instance = it }
+                            ?: MissionRepository(db).also { instance = it }
                 }
     }
 }

@@ -22,4 +22,7 @@ interface DailyMissionDao {
             "INNER JOIN missions " +
             "ON daily_missions.mission_id = missions.id")
     fun getAllDailyMissionsJoined(): Observable<List<DailyMissionJoined>>
+
+    @Insert
+    fun insertMission(mission: DailyMission)
 }

@@ -12,8 +12,7 @@ object InjectorUtil {
 
     private fun getMissionRepository(context: Context) =
             MissionRepository.getInstance(
-                    AppDatabase.getInstance(context).missionDao(),
-                    AppDatabase.getInstance(context).dailyMissionDao()
+                    AppDatabase.getInstance(context)
             )
 
     fun provideMissionListViewModelFactory(

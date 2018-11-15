@@ -97,13 +97,14 @@ class MissionListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.isChecked = true
         when (item?.itemId) {
             R.id.item_add -> {
                 val intent = MissionAddEditActivity.createIntent(this)
                 startActivity(intent)
             }
             R.id.item_filter_all -> {
-                binding.emptyMissionListTextView.text = getString(R.string.empty_active_mission_list)
+                binding.emptyMissionListTextView.text = getString(R.string.empty_mission_list)
                 viewModel.changeFilter(MissionFilterType.ALL_MISSIONS)
             }
             R.id.item_filter_active -> {
@@ -114,13 +115,10 @@ class MissionListActivity : AppCompatActivity() {
                 binding.emptyMissionListTextView.text = getString(R.string.empty_completed_mission_list)
                 viewModel.changeFilter(MissionFilterType.COMPLETED_MISSIONS)
             }
-            R.id.item_sort_by_day -> {
+            R.id.item_sort_by_rate -> {
 
             }
             R.id.item_sort_by_name -> {
-
-            }
-            R.id.item_sort_by_rate -> {
 
             }
         }

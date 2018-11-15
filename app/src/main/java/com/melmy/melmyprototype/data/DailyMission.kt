@@ -13,7 +13,7 @@ data class DailyMission(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id") val id: Long = 0,
         @ColumnInfo(name = "mission_id") val missionId: Long,
-        @ColumnInfo(name = "create_date") val date: Calendar = Calendar.getInstance(),
+        @ColumnInfo(name = "create_date") val createdDate: Calendar = Calendar.getInstance(),
         @ColumnInfo(name = "acc_minute") val accMinuteDaily: Int = 0,
         @ColumnInfo(name = "acc_count") val accCountDaily: Int = 0
 )
