@@ -83,7 +83,16 @@ class DayPickerView : LinearLayout, View.OnClickListener {
 
     private fun toggleColor(view: CheckedTextView, toggled: Boolean) {
         view.isChecked = toggled
-        val textColor = if (toggled) ContextCompat.getColor(mContext, R.color.colorWhite) else ContextCompat.getColor(mContext, R.color.colorBlack)
+        val textColor = if (toggled) {
+            ContextCompat.getColor(mContext, R.color.colorPrimaryDark)
+        } else {
+            if (view.id == R.id.day_picker_item_sunday)
+                ContextCompat.getColor(mContext, R.color.colorRed)
+            else if (view.id == R.id.day_picker_item_saturday)
+                ContextCompat.getColor(mContext, R.color.colorBlueGray)
+            else
+                ContextCompat.getColor(mContext, R.color.colorGray3)
+        }
         view.setTextColor(textColor)
     }
 }

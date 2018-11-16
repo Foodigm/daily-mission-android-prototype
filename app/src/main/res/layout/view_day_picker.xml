@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -20,9 +20,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_monday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorGray3"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_tuesday"
@@ -37,9 +42,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_tuesday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorGray3"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_wednesday"
@@ -54,9 +64,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_wednesday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorGray3"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_thursday"
@@ -71,9 +86,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_thursday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorGray3"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_friday"
@@ -88,9 +108,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_friday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorGray3"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_saturday"
@@ -105,9 +130,14 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_saturday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorBlueGray"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
 
         <CheckedTextView
             android:id="@+id/day_picker_item_sunday"
@@ -122,7 +152,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="10dp"
             android:text="@string/day_of_week_picker_sunday"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorRed"
             android:textSize="16dp"
             tools:ignore="SpUsage" />
 

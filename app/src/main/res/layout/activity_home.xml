@@ -36,7 +36,7 @@
                             android:layout_height="?attr/actionBarSize"
                             android:contentDescription="@null"
                             android:padding="15dp"
-                            android:src="@drawable/ic_menu" />
+                            app:srcCompat="@drawable/ic_menu" />
 
                         <TextView
                             android:layout_width="0dp"
