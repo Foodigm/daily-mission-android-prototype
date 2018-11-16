@@ -79,12 +79,15 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
                 android:id="@+id/mission_title_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:maxLength="24"
                 android:maxLines="1" />
         </LinearLayout>
 
@@ -311,7 +314,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="@{timeMissionVisibility}"/>
+                android:visibility="@{timeMissionVisibility}" />
 
         </LinearLayout>
 

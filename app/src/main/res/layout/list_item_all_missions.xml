@@ -13,7 +13,9 @@
             android:id="@+id/mission_item_title"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:ellipsize="end"
             android:gravity="center_vertical"
+            android:maxLines="2"
             android:textSize="18sp"
             tools:text="텍스트" />
 
