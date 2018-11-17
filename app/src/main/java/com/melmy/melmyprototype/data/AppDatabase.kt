@@ -7,11 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.melmy.melmyprototype.utils.DATABASE_NAME
 
-@Database(entities = [Mission::class, DailyMission::class], version = 1, exportSchema = false)
+@Database(entities = [Mission::class, LastAccessDate::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun missionDao(): MissionDao
-    abstract fun dailyMissionDao(): DailyMissionDao
+    abstract fun lastAccessDateDao(): LastAccessDateDao
 
     companion object {
         @Volatile

@@ -6,7 +6,7 @@ class MissionRepository private constructor(
         private val db: AppDatabase
 ) {
     private val missionDao = db.missionDao()
-    private val dailyMissionDao = db.dailyMissionDao()
+    private val lastAccessDateDao = db.lastAccessDateDao()
 
     fun createMission(mission: Mission) {
         runOnIoThread {
@@ -26,24 +26,6 @@ class MissionRepository private constructor(
     fun getMissionsObservable() =
             missionDao.getAllMissionsObservable()
 
-    fun insertDailyMissions(missions: List<DailyMission>) {
-        runOnIoThread {
-            dailyMissionDao.insertMissions(missions)
-        }
-    }
-
-    fun insertDailyMission(mission: DailyMission) {
-        runOnIoThread {
-            dailyMissionDao.insertMission(mission)
-        }
-    }
-
-    fun removeDailyMission(mission: DailyMission) {
-        runOnIoThread {
-            dailyMissionDao.deleteMission(mission)
-        }
-    }
-
     fun getMission(missionId: Long, callback: MissionDataSource.GetMissionCallback) {
         runOnIoThread {
             val mission = missionDao.getMission(missionId)
@@ -55,14 +37,40 @@ class MissionRepository private constructor(
         }
     }
 
-    fun updateAccTimeOrCount(dailyMissions: List<DailyMissionJoined>) {
-        runOnIoThread {
-            missionDao.accumulateDailyWorkAndDelete(dailyMissions)
-        }
-    }
+    fun getLastAccessTime() = lastAccessDateDao.getLastAccessDate()
 
-    fun getDailyMissions() =
-            dailyMissionDao.getAllDailyMissionsJoined()
+    fun accumulatePreviousData() =
+            missionDao.accumulatePreviousData()
+
+    fun insertLastAccessDate(accessDate: LastAccessDate) =
+            lastAccessDateDao.insertLastAccessDate(accessDate)
+//    fun insertDailyMissions(missions: List<DailyMission>) {
+//        runOnIoThread {
+//            dailyMissionDao.insertMissions(missions)
+//        }
+//    }
+//
+//    fun insertDailyMission(mission: DailyMission) {
+//        runOnIoThread {
+//            dailyMissionDao.insertMission(mission)
+//        }
+//    }
+//
+//    fun removeDailyMission(mission: DailyMission) {
+//        runOnIoThread {
+//            dailyMissionDao.deleteMission(mission)
+//        }
+//    }
+//
+//
+//    fun updateAccTimeOrCount(dailyMissions: List<DailyMissionJoined>) {
+//        runOnIoThread {
+//            missionDao.accumulateDailyWorkAndDelete(dailyMissions)
+//        }
+//    }
+//
+//    fun getDailyMissions() =
+//            dailyMissionDao.getAllDailyMissionsJoined()
 
     companion object {
 

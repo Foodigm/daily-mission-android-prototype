@@ -23,6 +23,8 @@ data class Mission(
         @ColumnInfo(name = "goal_count_daily") val goalCountDaily: Int = 0,
         @ColumnInfo(name = "acc_count_total") val accCountTotal: Int = 0,
         @ColumnInfo(name = "acc_upper_fulfill_rate") val accUpperFulfillRate: Int = 0,
-        @ColumnInfo(name = "acc_lower_fulfill_rate") val accLowerFulfillRate: Int = 0
+        @ColumnInfo(name = "acc_lower_fulfill_rate") val accLowerFulfillRate: Int = 0,
+        @ColumnInfo(name = "acc_minute_daily") val accMinuteDaily: Int = 0,
+        @ColumnInfo(name = "acc_count_daily") val accCountDaily: Int = 0
 )
 

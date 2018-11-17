@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.melmy.melmyprototype.R
-import com.melmy.melmyprototype.data.DailyMission
+import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.missionlist.MissionListActivity
@@ -91,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
 
 }
 
-class DailyMissionsAdapter : ListAdapter<DailyMission, DailyMissionViewHolder>(DailyMissionDiffCallback()) {
+class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(DailyMissionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyMissionViewHolder {
         val binding = ListItemDailyMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyMissionViewHolder(binding)
@@ -107,12 +107,12 @@ class DailyMissionsAdapter : ListAdapter<DailyMission, DailyMissionViewHolder>(D
 
 }
 
-class DailyMissionDiffCallback : DiffUtil.ItemCallback<DailyMission>() {
-    override fun areItemsTheSame(oldItem: DailyMission, newItem: DailyMission): Boolean {
+class DailyMissionDiffCallback : DiffUtil.ItemCallback<Mission>() {
+    override fun areItemsTheSame(oldItem: Mission, newItem: Mission): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: DailyMission, newItem: DailyMission): Boolean {
+    override fun areContentsTheSame(oldItem: Mission, newItem: Mission): Boolean {
         val copied = oldItem.copy(id = newItem.id)
         return copied == newItem
     }
