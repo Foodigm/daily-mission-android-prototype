@@ -1,111 +1,72 @@
 package com.melmy.melmyprototype.home
 
+import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.melmy.melmyprototype.data.LastAccessDate
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
-import com.melmy.melmyprototype.utils.runOnIoThread
+import com.melmy.melmyprototype.utils.isToday
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(
         private val missionRepository: MissionRepository)
     : ViewModel() {
 
-    private val dailyMissions = ObservableField<List<Mission>>()
+    val dailyMissions = ObservableField<List<Mission>>()
     private val disposable = CompositeDisposable()
+    val dailyMissionsLiveData = MutableLiveData<List<Mission>>()
 
     // stream 이 도중에 끊기는 경우를 생각해야함
-//    fun start() {
-//        disposable.add(missionRepository
-//                .getDailyMissions()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .take(1)
-//                .flatMap {
-//                    if (!it.isEmpty()) {
-//                        val date = it.get(0).dailyMission.createdDate
-//                        val today = Calendar.getInstance()
-//                        if (!isSameDay(date, today)) {
-//                            missionRepository.updateAccTimeOrCount(it)
-//                        }
-//                    }
-//                    missionRepository.getMissionsObservable()
-//                }
-//                .take(1)
-//                .map {
-//                    val missions = ArrayList<Mission>()
-//                    for (mission in it) {
-//                        if (mission.days.isTodayOn() == true && mission.isCompleted != true) {
-//                            missions.add(mission)
-//                        }
-//                    }
-//
-//                    val dailyMissions = ArrayList<DailyMission>()
-//                    val dailyMissionsJoined = ArrayList<DailyMissionJoined>()
-//                    // dailyMission 의 List 만들어서 DB 에 insert 하고 observable 에 set
-//                    for (item in missions) {
-//                        val dailyMission = DailyMission(missionId = item.id)
-//                        val dailyMissionJoined = DailyMissionJoined(dailyMission = dailyMission, title = item.title, type = item.type)
-//                        dailyMissions.add(dailyMission)
-//                        dailyMissionsJoined.add(dailyMissionJoined)
-//                    }
-//                    missionRepository.insertDailyMissions(dailyMissions)
-//
-//                    dailyMissionsJoined
-//                }
-//                .subscribe {
-//                    dailyMissions.set(it)
-//                    Log.d("sgc109", "daily item count : " + it.size)
-//                })
-//    }
-//
-//    fun start() {
-//        disposable.add(
-//                missionRepository.getLastAccessTime() // 저장된 LastAcessDate 가 없는 경우도 생각해야됨. 최초 실행시
-//                        .subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .switchIfEmpty(Maybe.just(LastAccessDate(date = Calendar.getInstance().apply { add(Calendar.DATE, -1) })))
-//                        .flatMapObservable {
-//                            if (isToday(it.date) != true) {
-//                                missionRepository.insertLastAccessDate(LastAccessDate())
-//                                Observable.just(true)
-//                            } else {
-//                                Observable.just(false)
-//                            }
-//                        }
-//                        .take(1)
-//                        .flatMap {
-//                            if (it) {
-//                                Observable.just(missionRepository.accumulatePreviousData())
-//                            } else {
-//                                Observable.just(0)
-//                            }
-//                        }
-//                        .flatMap {
-//                            missionRepository.getMissionsObservable()
-//                        }
-//                        .take(1)
-//                        .subscribe {
-//                            val todaysMissions = ArrayList<Mission>()
-//                            for (mission in it) {
-//                                if (mission.days.isTodayOn()) {
-//                                    todaysMissions.add(mission)
-//                                }
-//                            }
-//                            dailyMissions.set(todaysMissions)
-//                        }
-//        )
-//    }
+    fun start() {
+        Log.d("sgc109", "start!")
+        disposable.add(
+                missionRepository.getLastAccessTime()
+                        .take(1)
+                        .subscribeOn(Schedulers.io())
+                        .flatMap { lastDate ->
+                            Log.d("sgc109", "#1")
+                            if (!isToday(lastDate.date)) {
+                                missionRepository.accumulatePreviousData()
+                            }
+                            Log.d("sgc109", "#2")
 
-    fun start(){
-        runOnIoThread {
-        }
+                            missionRepository.insertLastAccessDate(LastAccessDate())
+                            Log.d("sgc109", "#3")
+
+                            missionRepository.getMissionsObservable()
+
+                        }
+                        .take(1)
+                        .map { missions ->
+                            Log.d("sgc109", "#4")
+
+                            val daily = ArrayList<Mission>()
+                            for (mission in missions) {
+                                if (mission.days.isTodayOn() && mission.isCompleted == false) {
+                                    daily.add(mission)
+                                }
+                            }
+                            daily
+                        }
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            Log.d("sgc109", "#5")
+                            dailyMissions.set(it)
+                            dailyMissionsLiveData.value = it
+                            Log.d("sgc109", "#6")
+                        }
+        )
     }
 
     override fun onCleared() {
         super.onCleared()
         disposable.dispose()
         disposable.clear()
+        Log.d("sgc109", "dispoased and cleared!")
     }
 }
 

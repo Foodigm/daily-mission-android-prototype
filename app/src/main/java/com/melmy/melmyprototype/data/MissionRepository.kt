@@ -20,6 +20,9 @@ class MissionRepository private constructor(
         }
     }
 
+    fun getMissionsLiveData() =
+            missionDao.getAllMissionsLiveData()
+
     fun getMissions() =
             missionDao.getAllMissions()
 
@@ -37,7 +40,8 @@ class MissionRepository private constructor(
         }
     }
 
-    fun getLastAccessTime() = lastAccessDateDao.getLastAccessDate()
+    fun getLastAccessTime() =
+            lastAccessDateDao.getLastAccessDate()
 
     fun accumulatePreviousData() =
             missionDao.accumulatePreviousData()

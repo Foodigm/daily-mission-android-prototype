@@ -13,7 +13,10 @@ interface MissionDao {
     fun insertMission(mission: Mission)
 
     @Query("SELECT * FROM missions")
-    fun getAllMissions(): LiveData<List<Mission>>
+    fun getAllMissionsLiveData(): LiveData<List<Mission>>
+
+    @Query("SELECT * FROM missions")
+    fun getAllMissions(): List<Mission>
 
     @Query("SELECT * FROM missions")
     fun getAllMissionsObservable(): Observable<List<Mission>>

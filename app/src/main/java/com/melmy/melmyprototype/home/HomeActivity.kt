@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -49,6 +51,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
+        viewModel.dailyMissionsLiveData.observe(this, Observer {
+            binding.emptyDailyMissionsTextView.visibility = when (it.isEmpty()) {
+                true -> View.VISIBLE
+                else -> View.GONE
+            }
+            adapter.submitList(it)
+        })
     }
 
     private fun setUpViews(binding: ActivityHomeBinding) {
@@ -63,6 +72,7 @@ class HomeActivity : AppCompatActivity() {
                     2,
                     RecyclerView.VERTICAL,
                     false)
+            viewModel = this@HomeActivity.viewModel
         }
     }
 
