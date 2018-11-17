@@ -1,19 +1,11 @@
 package com.melmy.melmyprototype.home
 
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.melmy.melmyprototype.data.LastAccessDate
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
-import com.melmy.melmyprototype.utils.isToday
 import com.melmy.melmyprototype.utils.runOnIoThread
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import java.util.*
 
 class HomeViewModel(
         private val missionRepository: MissionRepository)

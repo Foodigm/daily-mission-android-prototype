@@ -13,17 +13,17 @@ import androidx.lifecycle.ViewModelProviders
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionType
-import com.melmy.melmyprototype.databinding.ActivityMissionAddBinding
+import com.melmy.melmyprototype.databinding.ActivityMissionAddEditBinding
 import com.melmy.melmyprototype.utils.InjectorUtil
 
 //TODO : 하드코딩 제거 - 레이아웃 파일 포함
 class MissionAddEditActivity : AppCompatActivity() {
     lateinit var viewModel: MissionAddEditViewModel
-    lateinit var binding: ActivityMissionAddBinding
+    lateinit var binding: ActivityMissionAddEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add_edit)
 
         setUpViews()
         setUpViewModel()
