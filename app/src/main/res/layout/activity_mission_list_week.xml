@@ -23,7 +23,9 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -34,10 +36,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:text="@string/mission_list_by_day_of_week"
                         android:textColor="@android:color/white"
                         android:textSize="18sp"
-                        tools:ignore="RtlSymmetry"
-                        android:text="@string/mission_list_by_day_of_week" />
+                        tools:ignore="RtlSymmetry" />
 
                 </LinearLayout>
 

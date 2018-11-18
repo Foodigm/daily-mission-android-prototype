@@ -1,7 +1,5 @@
 package com.melmy.melmyprototype.utils
 
-import com.melmy.melmyprototype.data.Mission
-import com.melmy.melmyprototype.data.MissionType
 import java.util.*
 
 fun isSameDay(calendar1: Calendar, calendar2: Calendar): Boolean {

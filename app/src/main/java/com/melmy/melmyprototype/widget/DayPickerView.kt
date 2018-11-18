@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckedTextView
 import android.widget.LinearLayout
-
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ViewDayPickerBinding
 import com.melmy.melmyprototype.utils.DayOfWeekSet
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 
 class DayPickerView : LinearLayout, View.OnClickListener {
     val dayOfWeekSet = DayOfWeekSet()

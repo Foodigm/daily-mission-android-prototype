@@ -65,11 +65,11 @@
                 android:id="@+id/home_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:items="@{viewModel.dailyMissions}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
-                app:items="@{viewModel.dailyMissions}"
                 tools:listitem="@android:layout/simple_list_item_1">
 
             </androidx.recyclerview.widget.RecyclerView>
