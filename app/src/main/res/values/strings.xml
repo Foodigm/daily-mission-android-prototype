@@ -30,7 +30,7 @@
     <string name="add_mission">미션 추가</string>
     <string name="daily_achievement_rate">오늘의 달성도</string>
     <string name="daily_mission">오늘의 미션</string>
-    <string name="daily_complete_percent">%d %</string>
+    <string name="daily_complete_percent">%d%%</string>
     <string name="empty_mission_list">미션이 없습니다</string>
     <string name="empty_completed_mission_list">완료된 미션이 없습니다</string>
     <string name="empty_active_mission_list">진행중인 미션이 없습니다</string>
@@ -65,4 +65,6 @@
         <item>@string/day_of_week_picker_saturday_full</item>
         <item>@string/day_of_week_picker_sunday_full</item>
     </string-array>
+
+    <string name="format_start_date" note="YEAR,MONTH,DATE 순서">%s-%s-%s 시작</string>
 </resources>

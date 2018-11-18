@@ -100,7 +100,6 @@ class HomeActivity : AppCompatActivity() {
             true
         }
     }
-
 }
 
 class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {

@@ -21,6 +21,7 @@ import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
 import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
 import com.melmy.melmyprototype.missiondetail.MissionDetailActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
+import java.util.Calendar.*
 
 class MissionListActivity : AppCompatActivity() {
 
@@ -156,6 +157,10 @@ class MissionListAdapter(
 
         with(holder.binding) {
             missionItemTitle.text = item.title
+            missionItemPercentage.text = context.getString(R.string.daily_complete_percent, item.getAchievePercent())
+            //TODO : 날짜부분 리팩토링 필요
+            val calendar = item.createdDate
+            missionItemStartDate.text = context.getString(R.string.format_start_date,calendar.get(YEAR).toString(),calendar.get(MONTH).toString(),calendar.get(DAY_OF_MONTH).toString());
             missionItemProgressBar.progress = item.getAchievePercent()
             container.setOnClickListener {
                 missionItemCallback.openMissionDetail(item.id)
