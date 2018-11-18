@@ -1,6 +1,7 @@
 package com.melmy.melmyprototype.utils
 
 import android.util.Log
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
 import androidx.databinding.ObservableField
@@ -14,6 +15,7 @@ import com.melmy.melmyprototype.missionlistweek.MissionListWeekHeaderItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
+import java.util.*
 
 
 @BindingAdapter("items")
@@ -56,4 +58,9 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
             }
         }
     })
+}
+
+@BindingAdapter("setCalendar")
+fun bindCalendar(view: TextView, calendar: Calendar) {
+    view.text = view.context.getString(R.string.format_start_date, calendar.get(Calendar.YEAR).toString(), calendar.get(Calendar.MONTH).toString(), calendar.get(Calendar.DAY_OF_MONTH).toString())
 }

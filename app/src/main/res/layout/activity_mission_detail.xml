@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f7f7f7"
+        android:background="#f5f5f5"
         tools:context=".missiondetail.MissionDetailActivity">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -45,178 +45,215 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.timqi.sectorprogressview.ColorfulRingProgressView
-            android:id="@+id/detail_mission_progress"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="40dp"
-            app:bgColor="#e5e5e5"
-            app:fgColorEnd="@color/colorBlue"
-            app:fgColorStart="@color/colorPurple"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
-            app:layout_constraintVertical_bias="0.1"
-            app:percent="40"
-            app:startAngle="0"
-            app:strokeWidth="22dp" />
-
-        <TextView
-            android:id="@+id/detail_mission_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="78"
-            android:textColor="@color/colorGray1"
-            android:textSize="90dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/detail_mission_progress"
-            app:layout_constraintEnd_toEndOf="@+id/detail_mission_progress"
-            app:layout_constraintStart_toStartOf="@+id/detail_mission_progress"
-            app:layout_constraintTop_toTopOf="@+id/detail_mission_progress"
-            app:layout_constraintVertical_bias="0.47"
-            tools:ignore="SpUsage"
-            tools:text="78" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:includeFontPadding="false"
-            android:text="%"
-            android:textColor="@color/colorGray3"
-            android:textSize="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/detail_mission_percent"
-            app:layout_constraintStart_toEndOf="@+id/detail_mission_percent"
-            tools:ignore="HardcodedText,SpUsage" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="달성 중"
-            android:textColor="@color/colorGray3"
-            android:textSize="34dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_mission_percent"
-            tools:ignore="HardcodedText,SpUsage" />
-
-        <TextView
-            android:id="@+id/title_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
             android:gravity="center"
-            android:maxLength="24"
-            android:maxLines="2"
-            android:text="@{viewModel.mission.title}"
-            android:textColor="@color/colorGray2"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_mission_progress"
-            app:layout_constraintVertical_bias="0.3"
-            tools:ignore="SpUsage"
-            tools:text="Actual Sales Actual Sales Actual SalesActual SalesActual Sales" />
-
-        <TextView
-            android:id="@+id/date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorGray3"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text_view"
-            app:layout_constraintVertical_bias="0.2"
-            tools:text="CREATED : 2018-11-17" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="4dp"
-            android:background="@color/colorGray5"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
-            <LinearLayout
+            <Space
                 android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:includeFontPadding="false"
+                android:maxLength="24"
+                android:maxLines="2"
+                android:text="@{viewModel.mission.title}"
+                android:textColor="@color/colorGray2"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                tools:ignore="SpUsage"
+                tools:text="Actual Sales Actual Sales Actual SalesActual SalesActasdasdual Sales" />
+
+            <TextView
+                android:id="@+id/date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorGray3"
+                android:textSize="14sp"
+                app:setCalendar="@{viewModel.mission.createdDate}"
+                tools:text="@string/format_start_date" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="340dp"
+                android:layout_height="wrap_content">
+
+                <com.timqi.sectorprogressview.ColorfulRingProgressView
+                    android:id="@+id/detail_mission_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:bgColor="#e5e5e5"
+                    app:fgColorEnd="@color/colorBlue"
+                    app:fgColorStart="@color/colorPurple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:percent="62"
+                    app:startAngle="0"
+                    app:strokeWidth="30dp" />
 
                 <TextView
+                    android:id="@+id/detail_mission_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="오늘 달성한 목표"
-                    android:textColor="@color/colorGray3"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/colorGray2"
-                    android:textSize="24sp"
+                    android:includeFontPadding="false"
+                    android:text="62"
+                    android:textColor="@color/colorGray1"
+                    android:textSize="90dp"
                     android:textStyle="bold"
-                    tools:text="3회" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45"
+                    tools:ignore="SpUsage"
+                    tools:text="62" />
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:includeFontPadding="false"
+                    android:text="%"
+                    android:textColor="@color/colorGray3"
+                    android:textSize="48dp"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_mission_percent"
+                    app:layout_constraintStart_toEndOf="@id/detail_mission_percent"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="달성 중"
+                    android:textColor="@color/colorGray3"
+                    android:textSize="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_mission_percent"
+                    tools:ignore="HardcodedText,SpUsage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/detail_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:gravity="center"
+                android:text="@string/detail_description_low_percent"
+                android:textColor="@color/colorGray2"
+                android:textSize="16sp"
+                tools:text="@string/detail_description_low_percent" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="4dp"
                 android:background="@color/colorGray5" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="전체 목표"
-                    android:textColor="@color/colorGray3"
-                    android:textSize="18sp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="누적 목표"
+                        android:textColor="@color/colorGray4"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/detail_goal_daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@{`` + viewModel.mission.accCountTotal}"
+                        android:textColor="@color/colorGray2"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        tools:text="3회" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorGray5" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/colorGray2"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    tools:text="10회" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전체 목표"
+                        android:textColor="@color/colorGray4"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/detail_goal_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@{`` + viewModel.mission.goalCountTotal}"
+                        android:textColor="@color/colorGray2"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        tools:text="10회" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

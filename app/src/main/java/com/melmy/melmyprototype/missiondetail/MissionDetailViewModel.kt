@@ -26,5 +26,4 @@ class MissionDetailViewModel(
     override fun onDataNotAvailable() {
         // error msg
     }
-
 }
