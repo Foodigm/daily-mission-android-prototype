@@ -6,6 +6,7 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.missionlist.MissionListViewHolder
 import com.melmy.melmyprototype.missionlistweek.MissionItem
@@ -30,7 +31,6 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
         override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
             Log.d("sgc109", "onPropertyChanged!")
 
-
             val missions2D = Array(7) { ArrayList<Mission>() }
             missions.get()?.let {
                 for (mission in it) {
@@ -46,8 +46,9 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
 
             val adapter = (recyclerView.adapter as GroupAdapter<ViewHolder>)
             val sections = Array(7) { Section() }
+            val daysArray = recyclerView.context.resources.getStringArray(R.array.days_of_week_full)
             for (i in 0..6) {
-                sections[i].setHeader(MissionListWeekHeaderItem())
+                sections[i].setHeader(MissionListWeekHeaderItem(daysArray[i]))
                 adapter.add(sections[i])
                 for (mission in missions2D[i]) {
                     adapter.add(MissionItem(mission))

@@ -4,10 +4,9 @@ import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ListHeaderItemMissionWeekBinding
 import com.xwray.groupie.databinding.BindableItem
 
-class MissionListWeekHeaderItem : BindableItem<ListHeaderItemMissionWeekBinding>() {
+class MissionListWeekHeaderItem(val dayOfWeekName: String) : BindableItem<ListHeaderItemMissionWeekBinding>() {
     override fun bind(viewBinding: ListHeaderItemMissionWeekBinding, position: Int) {
-        val daysArray = viewBinding.root.context.resources.getStringArray(R.array.days_of_week_full)
-        viewBinding.listHeaderItemMissionWeekTextView.text = daysArray.get(position).toString()
+        viewBinding.listHeaderItemMissionWeekTextView.text = dayOfWeekName
     }
 
     override fun getLayout(): Int {
