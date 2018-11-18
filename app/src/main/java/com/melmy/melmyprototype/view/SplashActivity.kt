@@ -2,7 +2,6 @@ package com.melmy.melmyprototype.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {

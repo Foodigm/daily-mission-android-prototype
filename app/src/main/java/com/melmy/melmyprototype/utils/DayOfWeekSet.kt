@@ -51,7 +51,7 @@ class DayOfWeekSet {
 
     fun isTodayOn(): Boolean {
         val calendar = Calendar.getInstance()
-        return when(calendar.get(Calendar.DAY_OF_WEEK)) {
+        return when (calendar.get(Calendar.DAY_OF_WEEK)) {
             Calendar.MONDAY -> monday == true
             Calendar.TUESDAY -> tuesday == true
             Calendar.WEDNESDAY -> wednesday == true

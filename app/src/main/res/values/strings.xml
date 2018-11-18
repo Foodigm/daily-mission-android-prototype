@@ -52,6 +52,7 @@
     <string name="no">아니오</string>
     <string name="menu_mission_list_by_day_of_week">요일 별 미션 목록</string>
     <string name="mission_list_by_day_of_week">요일 별 미션 목록</string>
+    <string name="missions_history">미션 수행 일지</string>
     <string-array name="mission_types">
         <item>@string/mission_type_count</item>
         <item>@string/mission_type_time</item>

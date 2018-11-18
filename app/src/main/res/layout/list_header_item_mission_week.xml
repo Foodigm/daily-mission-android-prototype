@@ -8,10 +8,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/list_header_item_mission_week_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp" />
+            android:layout_margin="4dp"
+            android:textStyle="bold" />
     </LinearLayout>
 </layout>

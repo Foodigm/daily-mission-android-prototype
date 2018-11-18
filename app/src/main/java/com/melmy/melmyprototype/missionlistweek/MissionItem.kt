@@ -2,8 +2,8 @@ package com.melmy.melmyprototype.missionlistweek
 
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.data.Mission
-import com.xwray.groupie.databinding.BindableItem
 import com.melmy.melmyprototype.databinding.ListItemMissionWeekBinding
+import com.xwray.groupie.databinding.BindableItem
 
 class MissionItem(val mission: Mission) : BindableItem<ListItemMissionWeekBinding>() {
     override fun getLayout(): Int {
