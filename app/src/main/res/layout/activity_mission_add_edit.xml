@@ -36,14 +36,6 @@
                     android:layout_height="match_parent"
                     tools:ignore="UseCompoundDrawables">
 
-                    <ImageView
-                        android:id="@+id/back_image_view"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:contentDescription="@null"
-                        android:padding="15dp"
-                        app:srcCompat="@drawable/ic_back" />
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"

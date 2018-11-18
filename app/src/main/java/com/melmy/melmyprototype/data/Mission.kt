@@ -26,5 +26,13 @@ data class Mission(
         @ColumnInfo(name = "acc_lower_fulfill_rate") val accLowerFulfillRate: Int = 0,
         @ColumnInfo(name = "acc_minute_daily") val accMinuteDaily: Int = 0,
         @ColumnInfo(name = "acc_count_daily") val accCountDaily: Int = 0
-)
+) {
+    fun getAchievePercent() =
+            if (this.type == MissionType.COUNT) {
+                ((this.accCountTotal.toFloat()) / this.goalCountTotal * 100).toInt()
+            } else {
+                ((this.accMinuteTotal.toFloat()) / this.goalMinuteTotal * 100).toInt()
+            }
+
+}
 

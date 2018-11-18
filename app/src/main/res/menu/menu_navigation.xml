@@ -4,6 +4,9 @@
         android:id="@+id/mission_list"
         android:title="@string/menu_mission_list" />
     <item
+        android:id="@+id/mission_list_by_day_of_week"
+        android:title="@string/menu_mission_list_by_day_of_week" />
+    <item
         android:id="@+id/mission_history"
         android:title="@string/menu_mission_history" />
 </menu>

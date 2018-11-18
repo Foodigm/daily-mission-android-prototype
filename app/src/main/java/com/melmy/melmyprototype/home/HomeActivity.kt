@@ -20,6 +20,7 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.missionlist.MissionListActivity
+import com.melmy.melmyprototype.missionlistweek.MissionListWeekActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
 
@@ -45,8 +46,8 @@ class HomeActivity : AppCompatActivity() {
         subscribeUi(binding)
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         viewModel.start()
     }
 
@@ -64,10 +65,9 @@ class HomeActivity : AppCompatActivity() {
         val factory = InjectorUtil.provideHomeViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
         adapter = DailyMissionsAdapter()
-
         with(binding) {
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = GridLayoutManager(
+            homeRecyclerView.adapter = adapter
+            homeRecyclerView.layoutManager = GridLayoutManager(
                     this@HomeActivity,
                     2,
                     RecyclerView.VERTICAL,
@@ -90,6 +90,8 @@ class HomeActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.mission_list ->
                     startActivity(MissionListActivity.createIntent(this))
+                R.id.mission_list_by_day_of_week ->
+                    startActivity(MissionListWeekActivity.createIntent(this))
                 R.id.mission_history ->
                     startActivity(HistoryActivity.createIntent(this))
             }
@@ -101,7 +103,7 @@ class HomeActivity : AppCompatActivity() {
 
 }
 
-class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(DailyMissionDiffCallback()) {
+class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyMissionViewHolder {
         val binding = ListItemDailyMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyMissionViewHolder(binding)
@@ -117,7 +119,7 @@ class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(DailyM
 
 }
 
-class DailyMissionDiffCallback : DiffUtil.ItemCallback<Mission>() {
+class MissionDiffCallback : DiffUtil.ItemCallback<Mission>() {
     override fun areItemsTheSame(oldItem: Mission, newItem: Mission): Boolean {
         return oldItem.id == newItem.id
     }

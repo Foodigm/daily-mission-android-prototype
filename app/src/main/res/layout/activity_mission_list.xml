@@ -31,8 +31,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:paddingStart="@dimen/toolbar_title_left_padding"
-                        android:paddingLeft="@dimen/toolbar_title_left_padding"
                         android:text="@string/all_mission_list"
                         android:textColor="@android:color/white"
                         android:textSize="18sp"
@@ -42,7 +40,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/mission_list_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -21,7 +21,6 @@ import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
 import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
 import com.melmy.melmyprototype.missiondetail.MissionDetailActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
-import com.melmy.melmyprototype.utils.getAchievePercent
 
 class MissionListActivity : AppCompatActivity() {
 
@@ -62,15 +61,15 @@ class MissionListActivity : AppCompatActivity() {
         })
 
         with(binding) {
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this@MissionListActivity, RecyclerView.VERTICAL, false)
+            missionListRecyclerView.adapter = adapter
+            missionListRecyclerView.layoutManager = LinearLayoutManager(this@MissionListActivity, RecyclerView.VERTICAL, false)
         }
     }
 
     private fun subscribeUi() {
         viewModel.missions.observe(this, Observer {
             adapter.submitList(it)
-            binding.recyclerView.visibility =
+            binding.missionListRecyclerView.visibility =
                     if (it.isNotEmpty()) {
                         View.VISIBLE
                     } else {

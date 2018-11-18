@@ -25,9 +25,22 @@ class MissionAddEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add_edit)
 
+        setUpToolbar()
         setUpViews()
         setUpViewModel()
-        //debug()
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_back)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setUpViewModel() {
@@ -40,10 +53,6 @@ class MissionAddEditActivity : AppCompatActivity() {
         with(binding) {
             countMissionVisibility = View.VISIBLE
             timeMissionVisibility = View.GONE
-
-            backImageView.setOnClickListener {
-                finish()
-            }
 
             submitTextView.setOnClickListener {
                 submitMission()
@@ -113,15 +122,6 @@ class MissionAddEditActivity : AppCompatActivity() {
             executePendingBindings()
         }
     }
-
-    /*
-    @SuppressLint("SetTextI18n")
-    fun debug() {
-        binding.missionTitleEditText.setText("테스트 미션")
-        binding.totalGoalCountEditText.setText("10")
-        binding.dailyGoalCountEditText.setText("3")
-    }
-    */
 
     //TODO : INVALID CHECK - 제목 글자수, 비어있는지, 데일리가 토탈을 넘지는 않는지 등
     private fun submitMission() {

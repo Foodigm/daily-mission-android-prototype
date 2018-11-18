@@ -8,9 +8,11 @@ import com.melmy.melmyprototype.data.LastAccessDate
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
 import com.melmy.melmyprototype.utils.isToday
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class HomeViewModel(
         private val missionRepository: MissionRepository)
@@ -25,11 +27,13 @@ class HomeViewModel(
         Log.d("sgc109", "start!")
         disposable.add(
                 missionRepository.getLastAccessTime()
-                        .take(1)
+                        .toObservable()
                         .subscribeOn(Schedulers.io())
+                        .onErrorResumeNext(Observable.just(LastAccessDate()))
                         .flatMap { lastDate ->
                             Log.d("sgc109", "#1")
                             if (!isToday(lastDate.date)) {
+                                Log.d("sgc109", "acc!")
                                 missionRepository.accumulatePreviousData()
                             }
                             Log.d("sgc109", "#2")

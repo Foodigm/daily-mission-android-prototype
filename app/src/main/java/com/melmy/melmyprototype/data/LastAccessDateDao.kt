@@ -6,11 +6,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 
 @Dao
 interface LastAccessDateDao {
     @Query("SELECT * from last_access_date")
-    fun getLastAccessDate(): Observable<LastAccessDate>
+    fun getLastAccessDate(): Single<LastAccessDate>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLastAccessDate(accessDate: LastAccessDate)
