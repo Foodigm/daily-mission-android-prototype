@@ -23,6 +23,7 @@ import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -111,8 +112,14 @@ class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(Missio
     override fun onBindViewHolder(holder: DailyMissionViewHolder, position: Int) {
         val item = getItem(position)
         with(holder.binding) {
-            missionTitleTextView.text
-            missionCompletePercentTextView.text
+            missionTitleTextView.text = item.title
+            //val percent =  100 * item.accCountTotal / item.goalCountTotal
+            val percent =  Random().nextInt(80) /* debug */
+            missionCompletePercentTextView.text = percent.toString()
+            progressBar.percent = percent.toFloat()
+            progressBar.setOnClickListener(View.OnClickListener {
+                //TODO : 진행도 UPDATE
+            })
         }
     }
 
