@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -112,6 +113,18 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
                 item.accCountDaily++
                 viewModel.updateDailyMission(item)
                 notifyDataSetChanged()
+            }
+            percentMarkTextView.visibility = when (item.isCompletedToday()) {
+                true -> View.GONE
+                else -> View.VISIBLE
+            }
+            missionCompletePercentTextView.visibility = when (item.isCompletedToday()) {
+                true -> View.GONE
+                else -> View.VISIBLE
+            }
+            missionCompleteImageView.visibility = when (item.isCompletedToday()) {
+                true -> View.VISIBLE
+                else -> View.GONE
             }
         }
     }
