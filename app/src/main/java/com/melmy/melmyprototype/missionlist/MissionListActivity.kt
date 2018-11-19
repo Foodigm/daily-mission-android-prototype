@@ -162,7 +162,7 @@ class MissionListAdapter(
         //TODO 리팩토링
         with(holder.binding) {
             //디버그 용도
-            val percent = Random().nextInt(80)
+            val percent = item.getTotalAchievePercent()
             missionItemPercentage.text = context.getString(R.string.daily_complete_percent, percent)
             missionItemProgressBar.progress = percent
 

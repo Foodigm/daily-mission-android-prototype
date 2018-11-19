@@ -29,9 +29,9 @@ data class Mission(
 ) {
     fun getTotalAchievePercent() =
             if (this.type == MissionType.COUNT) {
-                ((this.accCountTotal.toFloat()) / this.goalCountTotal * 100).toInt()
+                ((this.accCountTotal.toFloat() + this.accCountDaily.toFloat()) / this.goalCountTotal * 100).toInt()
             } else {
-                ((this.accMinuteTotal.toFloat()) / this.goalMinuteTotal * 100).toInt()
+                ((this.accMinuteTotal.toFloat() + this.accMinuteDaily.toFloat()) / this.goalMinuteTotal * 100).toInt()
             }
 
     fun getDailyAchievePercent() =

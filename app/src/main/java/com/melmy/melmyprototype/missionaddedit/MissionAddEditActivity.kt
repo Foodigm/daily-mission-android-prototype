@@ -55,6 +55,7 @@ class MissionAddEditActivity : AppCompatActivity() {
             timeMissionVisibility = View.GONE
 
             submitTextView.setOnClickListener {
+                it.isEnabled = false
                 submitMission()
             }
 
