@@ -69,4 +69,5 @@
 
     <string name="format_start_date" note="YEAR,MONTH,DATE 순서">%s-%s-%s 시작</string>
     <string name="detail_description_low_percent">천리길도 한걸음부터라는 말이 있죠?\n조금만 더 힘을 내자구요!! 아자아자 (ง •̀_•́)ง</string>
+    <string name="sort_by_created_date">시작일 순으로</string>
 </resources>

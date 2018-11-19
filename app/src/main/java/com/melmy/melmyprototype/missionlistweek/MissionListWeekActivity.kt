@@ -54,6 +54,8 @@ class MissionListWeekActivity : AppCompatActivity() {
             recyclerView.adapter = this@MissionListWeekActivity.adapter
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
             viewModel = this@MissionListWeekActivity.viewModel
+
+            executePendingBindings()
         }
     }
 

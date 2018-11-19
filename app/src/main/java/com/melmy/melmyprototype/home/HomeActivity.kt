@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,7 +21,6 @@ import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.view.HistoryActivity
-import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -53,19 +50,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
-        viewModel.dailyMissionsLiveData.observe(this, Observer {
-            binding.emptyDailyMissionsTextView.visibility = when (it.isEmpty()) {
-                true -> View.VISIBLE
-                else -> View.GONE
-            }
-            adapter.submitList(it)
-        })
     }
 
     private fun setUpViews(binding: ActivityHomeBinding) {
         val factory = InjectorUtil.provideHomeViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
-        adapter = DailyMissionsAdapter()
+        adapter = DailyMissionsAdapter(viewModel)
         with(binding) {
             homeRecyclerView.adapter = adapter
             homeRecyclerView.layoutManager = GridLayoutManager(
@@ -74,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
                     RecyclerView.VERTICAL,
                     false)
             viewModel = this@HomeActivity.viewModel
+            executePendingBindings()
         }
     }
 
@@ -103,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
     }
 }
 
-class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {
+class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyMissionViewHolder {
         val binding = ListItemDailyMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyMissionViewHolder(binding)
@@ -113,13 +104,15 @@ class DailyMissionsAdapter : ListAdapter<Mission, DailyMissionViewHolder>(Missio
         val item = getItem(position)
         with(holder.binding) {
             missionTitleTextView.text = item.title
-            //val percent =  100 * item.accCountTotal / item.goalCountTotal
-            val percent =  Random().nextInt(80) /* debug */
+            val percent = item.getDailyAchievePercent()
             missionCompletePercentTextView.text = percent.toString()
             progressBar.percent = percent.toFloat()
-            progressBar.setOnClickListener(View.OnClickListener {
-                //TODO : 진행도 UPDATE
-            })
+            progressBar.setOnClickListener {
+                if (item.isCompletedToday()) return@setOnClickListener
+                item.accCountDaily++
+                viewModel.updateDailyMission(item)
+                notifyDataSetChanged()
+            }
         }
     }
 

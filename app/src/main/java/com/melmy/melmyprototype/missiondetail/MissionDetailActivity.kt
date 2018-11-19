@@ -52,6 +52,7 @@ class MissionDetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         with(binding) {
             //todo
+            executePendingBindings()
         }
     }
 

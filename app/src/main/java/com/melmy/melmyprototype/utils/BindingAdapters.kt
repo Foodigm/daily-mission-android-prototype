@@ -1,6 +1,7 @@
 package com.melmy.melmyprototype.utils
 
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
@@ -63,4 +64,19 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
 @BindingAdapter("setCalendar")
 fun bindCalendar(view: TextView, calendar: Calendar) {
     view.text = view.context.getString(R.string.format_start_date, calendar.get(Calendar.YEAR).toString(), calendar.get(Calendar.MONTH).toString(), calendar.get(Calendar.DAY_OF_MONTH).toString())
+}
+
+@BindingAdapter("app:visibility")
+fun setEmptyTextViewVisibility(view: View, missions: ObservableField<List<Mission>>) {
+    missions.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+        override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+            missions.get()?.let {
+                view.visibility = when (it.size) {
+                    0 -> View.VISIBLE
+                    else -> View.GONE
+                }
+            }
+        }
+
+    })
 }

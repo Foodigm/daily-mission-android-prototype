@@ -1,7 +1,6 @@
 package com.melmy.melmyprototype.utils
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import com.melmy.melmyprototype.data.AppDatabase
 import com.melmy.melmyprototype.data.MissionRepository
 import com.melmy.melmyprototype.home.HomeViewModelFactory
@@ -45,7 +44,7 @@ object InjectorUtil {
 
     fun provideMissionListWeekViewModelFactory(
             context: Context
-    ): ViewModelProvider.Factory? {
+    ): MissionListWeekViewModelFactory {
         return MissionListWeekViewModelFactory(getMissionRepository(context))
     }
 }

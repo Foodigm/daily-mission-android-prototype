@@ -44,6 +44,9 @@
                 <item
                     android:id="@+id/item_sort_by_rate"
                     android:title="@string/sort_by_completion_rate" />
+                <item
+                    android:id="@+id/item_sort_by_created_date"
+                    android:title="@string/sort_by_created_date" />
             </group>
         </menu>
     </item>

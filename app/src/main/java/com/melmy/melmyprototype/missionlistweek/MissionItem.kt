@@ -12,6 +12,6 @@ class MissionItem(val mission: Mission) : BindableItem<ListItemMissionWeekBindin
 
     override fun bind(viewBinding: ListItemMissionWeekBinding, position: Int) {
         viewBinding.textView.text = mission.title
-        viewBinding.progressBar.progress = mission.getAchievePercent()
+        viewBinding.progressBar.progress = mission.getTotalAchievePercent()
     }
 }

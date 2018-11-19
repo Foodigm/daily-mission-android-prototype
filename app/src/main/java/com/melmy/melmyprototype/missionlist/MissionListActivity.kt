@@ -122,6 +122,9 @@ class MissionListActivity : AppCompatActivity() {
             R.id.item_sort_by_name -> {
 
             }
+            R.id.item_sort_by_created_date -> {
+
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -163,8 +166,8 @@ class MissionListAdapter(
             missionItemPercentage.text = context.getString(R.string.daily_complete_percent, percent)
             missionItemProgressBar.progress = percent
 
-            //missionItemPercentage.text = context.getString(R.string.daily_complete_percent, item.getAchievePercent())
-            //missionItemProgressBar.progress = item.getAchievePercent()
+            //missionItemPercentage.text = context.getString(R.string.daily_complete_percent, item.getTotalAchievePercent())
+            //missionItemProgressBar.progress = item.getTotalAchievePercent()
 
             missionItemTitle.text = item.title
             val calendar = item.createdDate

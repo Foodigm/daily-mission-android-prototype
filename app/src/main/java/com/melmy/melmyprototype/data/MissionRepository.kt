@@ -3,7 +3,7 @@ package com.melmy.melmyprototype.data
 import com.melmy.melmyprototype.utils.runOnIoThread
 
 class MissionRepository private constructor(
-        private val db: AppDatabase
+        db: AppDatabase
 ) {
     private val missionDao = db.missionDao()
     private val lastAccessDateDao = db.lastAccessDateDao()
@@ -22,9 +22,6 @@ class MissionRepository private constructor(
 
     fun getMissionsLiveData() =
             missionDao.getAllMissionsLiveData()
-
-    fun getMissions() =
-            missionDao.getAllMissions()
 
     fun getMissionsObservable() =
             missionDao.getAllMissionsObservable()
@@ -48,33 +45,9 @@ class MissionRepository private constructor(
 
     fun insertLastAccessDate(accessDate: LastAccessDate) =
             lastAccessDateDao.insertLastAccessDate(accessDate)
-//    fun insertDailyMissions(missions: List<DailyMission>) {
-//        runOnIoThread {
-//            dailyMissionDao.insertMissions(missions)
-//        }
-//    }
-//
-//    fun insertDailyMission(mission: DailyMission) {
-//        runOnIoThread {
-//            dailyMissionDao.insertMission(mission)
-//        }
-//    }
-//
-//    fun removeDailyMission(mission: DailyMission) {
-//        runOnIoThread {
-//            dailyMissionDao.deleteMission(mission)
-//        }
-//    }
-//
-//
-//    fun updateAccTimeOrCount(dailyMissions: List<DailyMissionJoined>) {
-//        runOnIoThread {
-//            missionDao.accumulateDailyWorkAndDelete(dailyMissions)
-//        }
-//    }
-//
-//    fun getDailyMissions() =
-//            dailyMissionDao.getAllDailyMissionsJoined()
+
+    fun updateMission(mission: Mission) =
+            missionDao.updateMission(mission)
 
     companion object {
 
