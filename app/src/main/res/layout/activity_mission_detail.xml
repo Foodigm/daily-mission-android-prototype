@@ -106,7 +106,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:percent="62"
+                    app:percent="@{viewModel.mission.getTotalAchievePercent()}"
                     app:startAngle="0"
                     app:strokeWidth="30dp" />
 
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="62"
+                    android:text="@{`` + viewModel.mission.getTotalAchievePercent()}"
                     android:textColor="@color/colorGray1"
                     android:textSize="90dp"
                     android:textStyle="bold"

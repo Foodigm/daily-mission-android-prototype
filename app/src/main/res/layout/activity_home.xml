@@ -95,6 +95,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
+            app:drawerMissions="@{viewModel.dailyMissions}"
             android:id="@+id/home_navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

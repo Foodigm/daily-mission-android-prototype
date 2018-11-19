@@ -8,6 +8,7 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.missionlist.MissionListViewHolder
@@ -75,6 +76,26 @@ fun setEmptyTextViewVisibility(view: View, missions: ObservableField<List<Missio
                     0 -> View.VISIBLE
                     else -> View.GONE
                 }
+            }
+        }
+
+    })
+}
+
+@BindingAdapter("app:drawerMissions")
+fun bindDrawerMissions(navigationView: NavigationView, missions: ObservableField<List<Mission>>) {
+    missions.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+        override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+            missions.get()?.let { missions ->
+                val view = navigationView.getHeaderView(0)
+                val textView = view.findViewById(R.id.percent_text_view) as TextView
+                var accUpper = 0
+                var accLower = 0
+                for (mission in missions) {
+                    accUpper += mission.accCountDaily
+                    accLower += mission.goalCountDaily
+                }
+                textView.text = ((accUpper.toFloat() / accLower.toFloat()) * 100).toInt().toString()
             }
         }
 
