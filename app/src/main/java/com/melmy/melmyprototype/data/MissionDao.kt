@@ -25,11 +25,11 @@ interface MissionDao {
     fun deleteMission(mission: Mission)
 
     @Query("UPDATE missions " +
-            "SET acc_minute_total = acc_minute_total + acc_minute_daily, " +
-            "acc_count_total = acc_count_total + acc_count_daily, " +
-            "acc_minute_daily = 0, " +
-            "acc_count_daily = 0 " +
-            "WHERE acc_minute_daily > 0 AND acc_count_daily > 0 ")
+            "SET acc_seconds_total = acc_seconds_total + acc_seconds_daily, " +
+            "acc_counts_total = acc_counts_total + acc_counts_daily, " +
+            "acc_seconds_daily = 0, " +
+            "acc_counts_daily = 0 " +
+            "WHERE acc_seconds_daily > 0 AND acc_counts_daily > 0 ")
     fun accumulatePreviousData(): Int
 
     @Update

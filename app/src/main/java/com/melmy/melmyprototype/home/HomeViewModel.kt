@@ -54,7 +54,9 @@ class HomeViewModel(
 
                             val daily = ArrayList<Mission>()
                             for (mission in missions) {
-                                if (mission.days.isTodayOn() && mission.isCompleted == false) {
+                                if (mission.days.isTodayOn() == true
+                                        && mission.isTotallyCompleted() == false
+                                        && mission.isStopped == false) {
                                     daily.add(mission)
                                 }
                             }

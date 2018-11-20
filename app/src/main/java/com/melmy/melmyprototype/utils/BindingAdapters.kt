@@ -67,7 +67,7 @@ fun bindCalendar(view: TextView, calendar: Calendar) {
     view.text = view.context.getString(R.string.format_start_date, calendar.get(Calendar.YEAR).toString(), calendar.get(Calendar.MONTH).toString(), calendar.get(Calendar.DAY_OF_MONTH).toString())
 }
 
-@BindingAdapter("app:visibility")
+@BindingAdapter("app:setVisibility")
 fun setEmptyTextViewVisibility(view: View, missions: ObservableField<List<Mission>>) {
     missions.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
         override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
@@ -92,8 +92,8 @@ fun bindDrawerMissions(navigationView: NavigationView, missions: ObservableField
                 var accUpper = 0
                 var accLower = 0
                 for (mission in missions) {
-                    accUpper += mission.accCountDaily
-                    accLower += mission.goalCountDaily
+                    accUpper += mission.accCountsDaily
+                    accLower += mission.goalCountsDaily
                 }
                 textView.text = ((accUpper.toFloat() / accLower.toFloat()) * 100).toInt().toString()
             }

@@ -134,8 +134,8 @@ class MissionAddEditActivity : AppCompatActivity() {
                         title = title,
                         days = dayOfWeekSet,
                         type = MissionType.COUNT,
-                        goalCountTotal = binding.missionTypeCountTotalAmount.text.toString().toInt(),
-                        goalCountDaily = binding.missionTypeCountDailyAmount.text.toString().toInt()
+                        goalCountsTotal = binding.missionTypeCountTotalAmount.text.toString().toInt(),
+                        goalCountsDaily = binding.missionTypeCountDailyAmount.text.toString().toInt()
                 )
             }
             else -> {
@@ -151,8 +151,8 @@ class MissionAddEditActivity : AppCompatActivity() {
                         title = title,
                         days = dayOfWeekSet,
                         type = MissionType.TIME,
-                        goalMinuteTotal = totalGoalHour * 60,
-                        goalMinuteDaily = dailyGoalHour * 60
+                        goalSecondsTotal = totalGoalHour * 60,
+                        goalSecondsDaily = dailyGoalHour * 60
                 )
 
             }

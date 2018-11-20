@@ -85,7 +85,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/empty_mission_list"
-                app:visibility="@{viewModel.dailyMissions}"
+                app:setVisibility="@{viewModel.dailyMissions}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

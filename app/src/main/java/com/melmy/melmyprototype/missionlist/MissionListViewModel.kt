@@ -45,8 +45,8 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
     private fun filterMissions(list: List<Mission>, filter: MissionFilterType) =
             list.filter {
                 when (filter) {
-                    MissionFilterType.ACTIVE_MISSIONS -> !it.isCompleted
-                    MissionFilterType.COMPLETED_MISSIONS -> it.isCompleted
+                    MissionFilterType.ACTIVE_MISSIONS -> !it.isStopped && !it.isTotallyCompleted()
+                    MissionFilterType.COMPLETED_MISSIONS -> it.isStopped || it.isTotallyCompleted()
                     else -> true
                 }
             }

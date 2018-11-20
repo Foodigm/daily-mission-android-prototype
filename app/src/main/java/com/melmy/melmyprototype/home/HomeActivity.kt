@@ -103,6 +103,7 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
 
     override fun onBindViewHolder(holder: DailyMissionViewHolder, position: Int) {
         val item = getItem(position)
+        // Data Binding 으로 수정
         with(holder.binding) {
             missionTitleTextView.text = item.title
             val percent = item.getDailyAchievePercent()
@@ -110,7 +111,7 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
             progressBar.percent = percent.toFloat()
             progressBar.setOnClickListener {
                 if (item.isCompletedToday()) return@setOnClickListener
-                item.accCountDaily++
+                item.accCountsDaily++
                 viewModel.updateDailyMission(item)
                 notifyDataSetChanged()
             }
