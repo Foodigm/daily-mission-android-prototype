@@ -2,7 +2,6 @@ package com.melmy.melmyprototype.home
 
 import android.util.Log
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.melmy.melmyprototype.data.LastAccessDate
 import com.melmy.melmyprototype.data.Mission
@@ -21,7 +20,6 @@ class HomeViewModel(
 
     val dailyMissions = ObservableField<List<Mission>>()
     private val disposable = CompositeDisposable()
-    val dailyMissionsLiveData = MutableLiveData<List<Mission>>()
 
     fun updateDailyMission(mission: Mission) =
             runOnIoThread { missionRepository.updateMission(mission) }
@@ -46,7 +44,6 @@ class HomeViewModel(
                             Log.d("sgc109", "#3")
 
                             missionRepository.getMissionsObservable()
-
                         }
                         .take(1)
                         .map { missions ->
@@ -66,7 +63,6 @@ class HomeViewModel(
                         .subscribe {
                             Log.d("sgc109", "#5")
                             dailyMissions.set(it)
-                            dailyMissionsLiveData.value = it
                             Log.d("sgc109", "#6")
                         }
         )
@@ -79,8 +75,3 @@ class HomeViewModel(
         Log.d("sgc109", "dispoased and cleared!")
     }
 }
-
-data class MyPair(
-        val doesDailyMissionExist: Boolean,
-        val list: Any
-)

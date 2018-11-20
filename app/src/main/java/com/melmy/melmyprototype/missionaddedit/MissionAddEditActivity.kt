@@ -140,19 +140,19 @@ class MissionAddEditActivity : AppCompatActivity() {
             }
             else -> {
                 //TODO 시간 모드 구현
-                val totalGoalHour = 60 /* DEBUG */
-                val dailyGoalHour = 20 /* DEBUG */
+                val totalGoalMinute = 10 /* DEBUG */
+                val dailyGoalMinute = 3 /* DEBUG */
 
                 //val totalGoalHour = binding.totalGoalHourEditText.text.toString().toInt()
                 //val dailyGoalHour = binding.dailyGoalHourEditText.text.toString().toInt()
-                // TODO minute 도 더해서 넣어줘야 함
+                // TODO minute 도 더해서 넣어줘야 함 (황성호 : 시간 단위를 '분' 이 아니라, '초' 로 계산해서 넣어주기)
 
                 Mission(
                         title = title,
                         days = dayOfWeekSet,
                         type = MissionType.TIME,
-                        goalSecondsTotal = totalGoalHour * 60,
-                        goalSecondsDaily = dailyGoalHour * 60
+                        goalSecondsTotal = totalGoalMinute * 60,
+                        goalSecondsDaily = dailyGoalMinute * 60
                 )
 
             }

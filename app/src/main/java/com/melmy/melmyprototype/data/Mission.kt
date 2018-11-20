@@ -25,7 +25,7 @@ data class Mission(
         @ColumnInfo(name = "acc_counts_total") val accCountsTotal: Int = 0,
         @ColumnInfo(name = "acc_upper_fulfill_rate") val accUpperFulfillRate: Int = 0,
         @ColumnInfo(name = "acc_lower_fulfill_rate") val accLowerFulfillRate: Int = 0,
-        @ColumnInfo(name = "acc_seconds_daily") val accSecondsDaily: Int = 0,
+        @ColumnInfo(name = "acc_seconds_daily") var accSecondsDaily: Int = 0,
         @ColumnInfo(name = "acc_counts_daily") var accCountsDaily: Int = 0
 ) {
     fun getTodayGoalSecond() =

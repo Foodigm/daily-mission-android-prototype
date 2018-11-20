@@ -51,4 +51,6 @@ dependencies {
 
     //circle progress view
     implementation 'com.timqi.sectorprogressview:library:2.0.1'
+
+//    implementation 'android.arch.work:work-runtime:1.0.0-alpha11'
 }
