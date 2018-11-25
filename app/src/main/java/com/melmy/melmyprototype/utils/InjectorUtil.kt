@@ -8,6 +8,7 @@ import com.melmy.melmyprototype.missionaddedit.MissionAddEditViewModelFactory
 import com.melmy.melmyprototype.missiondetail.MissionDetailViewModelFactory
 import com.melmy.melmyprototype.missionlist.MissionListViewModelFactory
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekViewModelFactory
+import com.melmy.melmyprototype.version.VersionViewModelFactory
 
 object InjectorUtil {
 
@@ -46,5 +47,11 @@ object InjectorUtil {
             context: Context
     ): MissionListWeekViewModelFactory {
         return MissionListWeekViewModelFactory(getMissionRepository(context))
+    }
+
+    fun provideVersionViewModelFactory(
+            context: Context
+    ): VersionViewModelFactory {
+        return VersionViewModelFactory()
     }
 }

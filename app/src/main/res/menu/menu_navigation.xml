@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/mission_list"
-        android:title="@string/menu_mission_list" />
-    <item
-        android:id="@+id/mission_list_by_day_of_week"
-        android:title="@string/menu_mission_list_by_day_of_week" />
-    <item
-        android:id="@+id/mission_history"
-        android:title="@string/menu_mission_history" />
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/mission_list"
+            android:icon="@drawable/ic_total_mission"
+            android:title="@string/menu_mission_list" />
+        <item
+            android:id="@+id/mission_list_by_day_of_week"
+            android:icon="@drawable/ic_day_mission"
+            android:title="@string/menu_mission_list_by_day_of_week" />
+        <item
+            android:id="@+id/mission_history"
+            android:icon="@drawable/ic_history_mission"
+            android:title="@string/menu_mission_history" />
+    </group>
+    <item android:title="@string/menu_information">
+        <menu>
+            <item
+                android:id="@+id/menu_review"
+                android:title="@string/menu_review" />
+            <item
+                android:id="@+id/menu_report"
+                android:title="@string/menu_report" />
+            <item
+                android:id="@+id/menu_version"
+                android:title="@string/menu_version" />
+        </menu>
+    </item>
+    <item android:title="@string/menu_etc">
+        <menu>
+            <item
+                android:id="@+id/menu_term_service"
+                android:title="@string/menu_term_service" />
+            <item
+                android:id="@+id/menu_term_private"
+                android:title="@string/menu_term_private" />
+            <item
+                android:id="@+id/menu_open_source"
+                android:title="@string/menu_open_source" />
+        </menu>
+    </item>
 </menu>

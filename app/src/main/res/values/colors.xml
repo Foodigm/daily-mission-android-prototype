@@ -24,7 +24,9 @@
     <color name="colorGray9">#F7F7F7</color>
 
     <color name="colorGreen">#165e1e</color>
-    <color name="colorBlue">#4A90E2</color>
+    <color name="colorBlue">#4479ec</color>
+    <color name="colorBlueDark">#3669d9</color>
+    <color name="colorBlueTransparent">#92003cc6</color>
     <color name="colorBlueGray">#7b96a6</color>
     <color name="colorRed">#d90b0b</color>
     <color name="colorRedDark">#c43b22</color>

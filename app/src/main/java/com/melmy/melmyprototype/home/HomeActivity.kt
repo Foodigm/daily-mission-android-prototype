@@ -2,12 +2,14 @@ package com.melmy.melmyprototype.home
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -24,7 +26,9 @@ import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
 import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
+import com.melmy.melmyprototype.utils.makeInquireReport
 import com.melmy.melmyprototype.utils.secondsToStringFormat
+import com.melmy.melmyprototype.version.VersionActivity
 import com.melmy.melmyprototype.view.HistoryActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -91,6 +95,30 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(MissionListWeekActivity.createIntent(this))
                 R.id.mission_history ->
                     startActivity(HistoryActivity.createIntent(this))
+                R.id.menu_review -> {
+                    val appPackageName = packageName
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+                    } catch (anfe: android.content.ActivityNotFoundException) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+                    }
+                }
+                R.id.menu_report -> {
+                    val uri = Uri.parse(makeInquireReport(this))
+                    val it = Intent(Intent.ACTION_SENDTO, uri)
+                    startActivity(it)
+                }
+                R.id.menu_version -> {
+                    startActivity(VersionActivity.createIntent(this))
+                }
+                //TODO : 오픈소스 라이선스, 개인정보 취급방침 등 작성
+                R.id.menu_term_service ->
+                    Toast.makeText(this@HomeActivity, getString(R.string.comming_soon), Toast.LENGTH_LONG).show()
+                R.id.menu_term_private ->
+                    Toast.makeText(this@HomeActivity, getString(R.string.comming_soon), Toast.LENGTH_LONG).show()
+                R.id.menu_open_source ->
+                    Toast.makeText(this@HomeActivity, getString(R.string.comming_soon), Toast.LENGTH_LONG).show()
+
             }
             binding.drawerLayout.closeDrawers()
 

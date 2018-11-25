@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.melmy.melmyprototype">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -30,6 +32,7 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".view.HistoryActivity" />
         <activity android:name=".missionlistweek.MissionListWeekActivity" />
+        <activity android:name=".version.VersionActivity" />
     </application>
 
 </manifest>

@@ -71,4 +71,27 @@
     <string name="detail_description_low_percent">천리길도 한걸음부터라는 말이 있죠?\n조금만 더 힘을 내자구요!! 아자아자 (ง •̀_•́)ง</string>
     <string name="sort_by_created_date">시작일 순으로</string>
     <string name="chronometer_format">HH:MM:SS</string>
+
+    <string name="comming_soon">준비중인 기능입니다.</string>
+    <string name="menu_information">정보/문의</string>
+    <string name="menu_review">평점과 리뷰쓰기</string>
+    <string name="menu_report">버그 신고 및 제안</string>
+    <string name="menu_version">버전 확인</string>
+    <string name="menu_etc">기타</string>
+    <string name="menu_term_service">서비스 이용약관</string>
+    <string name="menu_term_private">개인정보 처리방침</string>
+    <string name="menu_open_source">오픈소스 라이센스</string>
+
+    <!-- 버그 제보 -->
+    <string name="report_body">OS Version : %s\nApp Version : %s\n\n\n</string>
+
+    <!-- 버전 체크 -->
+    <string name="error_common">알수없는 에러가 발생했습니다.</string>
+    <string name="title_version_check">버전 확인</string>
+    <string name="action_update">업데이트</string>
+    <string name="current_version">현재버전</string>
+    <string name="latest_version">최신버전</string>
+    <string name="message_network_not_enabled">네트워크가 불안정합니다</string>
+    <string name="message_version_latest">최신버전입니다</string>
+    <string name="common_loading">로딩중…</string>
 </resources>
