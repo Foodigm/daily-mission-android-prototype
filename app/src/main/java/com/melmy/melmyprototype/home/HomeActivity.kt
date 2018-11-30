@@ -55,7 +55,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.start()
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
@@ -64,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setUpViews(binding: ActivityHomeBinding) {
         val factory = InjectorUtil.provideHomeViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
+                .apply { start() }
         adapter = DailyMissionsAdapter(viewModel)
         with(binding) {
             homeRecyclerView.adapter = adapter

@@ -32,7 +32,7 @@ class HomeViewModel(
                         .toObservable()
                         .subscribeOn(Schedulers.io())
                         .onErrorResumeNext(Observable.just(LastAccessDate()))
-                        .flatMap { lastDate ->
+                        .subscribe { lastDate ->
                             Log.d("sgc109", "#1")
                             if (!isToday(lastDate.date)) {
                                 Log.d("sgc109", "acc!")
@@ -45,7 +45,10 @@ class HomeViewModel(
 
                             missionRepository.getMissionsObservable()
                         }
-                        .take(1)
+        )
+        disposable.add(
+                missionRepository.getMissionsObservable()
+                        .subscribeOn(Schedulers.io())
                         .map { missions ->
                             Log.d("sgc109", "#4")
 
