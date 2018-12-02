@@ -39,7 +39,8 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
     private fun sortMissions(list: List<Mission>, sortType: MissionSortType): List<Mission> =
             when (sortType) {
                 MissionSortType.SORT_BY_NAME -> list.sortedWith(compareBy({ it.title }))
-                else -> list
+                MissionSortType.SORT_BY_COMPLETION_RATE -> list.sortedWith(compareBy({ it.getTotalAchievePercent() }))
+                MissionSortType.SORT_BY_STARTED_DATE -> list.sortedWith(compareBy({ it.createdDate }))
             }
 
     private fun filterMissions(list: List<Mission>, filter: MissionFilterType) =
@@ -53,5 +54,9 @@ class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel
 
     fun deleteMission(mission: Mission) {
         missionRepository.removeMission(mission)
+    }
+
+    fun deleteAllMissions() {
+        missionRepository.removeAllMissions()
     }
 }

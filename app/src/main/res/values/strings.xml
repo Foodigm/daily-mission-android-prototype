@@ -48,6 +48,7 @@
     <string name="mission_title">미션 이름</string>
     <string name="remove">삭제</string>
     <string name="mission_remove_dialog_title">미션을 영구적으로 삭제하시겠습니까?</string>
+    <string name="mission_remove_all_dialog_title">모든 미션을 영구적으로 삭제하시겠습니까?</string>
     <string name="yes">예</string>
     <string name="no">아니오</string>
     <string name="menu_mission_list_by_day_of_week">요일 별 미션 목록</string>
@@ -95,4 +96,6 @@
     <string name="message_version_latest">최신버전입니다</string>
     <string name="common_loading">로딩중…</string>
     <string name="mission_completed">미션을 달성했습니다!</string>
+    <string name="remove_all">모두 삭제</string>
+    <string name="edit">수정</string>
 </resources>

@@ -158,17 +158,17 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/detail_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:gravity="center"
-                android:text="@string/detail_description_low_percent"
-                android:textColor="@color/colorGray2"
-                android:textSize="16sp"
-                tools:text="@string/detail_description_low_percent" />
+            <!--<TextView-->
+            <!--android:id="@+id/detail_description"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginEnd="12dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/detail_description_low_percent"-->
+            <!--android:textColor="@color/colorGray2"-->
+            <!--android:textSize="16sp"-->
+            <!--tools:text="@string/detail_description_low_percent" />-->
 
             <Space
                 android:layout_width="0dp"

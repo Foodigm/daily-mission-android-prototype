@@ -49,6 +49,12 @@ class MissionRepository private constructor(
     fun updateMission(mission: Mission) =
             missionDao.updateMission(mission)
 
+    fun removeAllMissions() {
+        runOnIoThread {
+            missionDao.deleteAllMissions()
+        }
+    }
+
     companion object {
 
         @Volatile

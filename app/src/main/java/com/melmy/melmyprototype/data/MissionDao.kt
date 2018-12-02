@@ -34,4 +34,7 @@ interface MissionDao {
 
     @Update
     fun updateMission(mission: Mission): Int
+
+    @Query("DELETE FROM missions")
+    fun deleteAllMissions()
 }

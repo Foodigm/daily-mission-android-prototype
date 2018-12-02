@@ -21,7 +21,6 @@ import com.melmy.melmyprototype.databinding.ListItemAllMissionsBinding
 import com.melmy.melmyprototype.missionaddedit.MissionAddEditActivity
 import com.melmy.melmyprototype.missiondetail.MissionDetailActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
-import java.util.*
 import java.util.Calendar.*
 
 class MissionListActivity : AppCompatActivity() {
@@ -116,14 +115,25 @@ class MissionListActivity : AppCompatActivity() {
                 binding.emptyMissionListTextView.text = getString(R.string.empty_completed_mission_list)
                 viewModel.changeFilter(MissionFilterType.COMPLETED_MISSIONS)
             }
-            R.id.item_sort_by_rate -> {
-
+            R.id.item_sort_by_completion_rate -> {
+                viewModel.changeOrder(MissionSortType.SORT_BY_COMPLETION_RATE)
             }
             R.id.item_sort_by_name -> {
-
+                viewModel.changeOrder(MissionSortType.SORT_BY_NAME)
             }
-            R.id.item_sort_by_created_date -> {
-
+            R.id.item_sort_by_started_date -> {
+                viewModel.changeOrder(MissionSortType.SORT_BY_STARTED_DATE)
+            }
+            R.id.remove_all -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(R.string.mission_remove_all_dialog_title)
+                        .setPositiveButton(R.string.yes) { _, _ ->
+                            viewModel.deleteAllMissions()
+                        }
+                        .setNegativeButton(R.string.no) { _, _ ->
+                            // do nothing..
+                        }
+                        .show()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -179,6 +189,9 @@ class MissionListAdapter(
                 val popup = PopupMenu(context, holder.itemView)
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
+                        R.id.item_edit -> {
+
+                        }
                         R.id.item_remove -> {
                             val builder = AlertDialog.Builder(context)
                             builder.setTitle(R.string.mission_remove_dialog_title)
