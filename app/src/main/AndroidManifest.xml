@@ -30,7 +30,7 @@
         <activity android:name=".missionlist.MissionListActivity" />
         <activity android:name=".missiondetail.MissionDetailActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".view.HistoryActivity" />
+        <activity android:name=".missionhistory.HistoryActivity" />
         <activity android:name=".missionlistweek.MissionListWeekActivity" />
         <activity android:name=".version.VersionActivity" />
     </application>

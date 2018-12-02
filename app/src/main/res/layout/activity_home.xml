@@ -85,25 +85,56 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/empty_mission_list"
-                app:setVisibility="@{viewModel.dailyMissions}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+                app:setVisibility="@{viewModel.dailyMissions}" />
+
+            <TextView
+                android:id="@+id/mission_completed_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                android:gravity="center"
+                android:text="@string/mission_completed"
+                android:textColor="@color/colorWhite"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:translationZ="10dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpUsage" />
+
+            <nl.dionsegijn.konfetti.KonfettiView
+                android:id="@+id/confetti_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:translationZ="20dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
-            app:drawerMissions="@{viewModel.dailyMissions}"
             android:id="@+id/home_navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="false"
+            app:drawerMissions="@{viewModel.dailyMissions}"
             app:headerLayout="@layout/navigation_header"
             app:menu="@menu/menu_navigation">
 
         </com.google.android.material.navigation.NavigationView>
+
+
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

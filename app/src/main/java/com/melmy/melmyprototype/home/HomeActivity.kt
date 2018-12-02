@@ -2,13 +2,17 @@ package com.melmy.melmyprototype.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -23,13 +27,17 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionType
 import com.melmy.melmyprototype.databinding.ActivityHomeBinding
 import com.melmy.melmyprototype.databinding.ListItemDailyMissionsBinding
+import com.melmy.melmyprototype.missionhistory.HistoryActivity
 import com.melmy.melmyprototype.missionlist.MissionListActivity
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekActivity
 import com.melmy.melmyprototype.utils.InjectorUtil
 import com.melmy.melmyprototype.utils.makeInquireReport
 import com.melmy.melmyprototype.utils.secondsToStringFormat
 import com.melmy.melmyprototype.version.VersionActivity
-import com.melmy.melmyprototype.view.HistoryActivity
+import nl.dionsegijn.konfetti.KonfettiView
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -51,10 +59,7 @@ class HomeActivity : AppCompatActivity() {
         setUpDrawer(binding)
         setUpViews(binding)
         subscribeUi(binding)
-    }
 
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun subscribeUi(binding: ActivityHomeBinding) {
@@ -64,8 +69,13 @@ class HomeActivity : AppCompatActivity() {
         val factory = InjectorUtil.provideHomeViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
                 .apply { start() }
-        adapter = DailyMissionsAdapter(viewModel)
+        adapter = DailyMissionsAdapter(windowManager, viewModel, binding.confettiView, binding.missionCompletedTextView)
         with(binding) {
+            confettiView.setOnClickListener {
+                missionCompletedTextView.visibility = View.GONE
+                confettiView.visibility = View.GONE
+                confettiView.reset()
+            }
             homeRecyclerView.adapter = adapter
             homeRecyclerView.layoutManager = GridLayoutManager(
                     this@HomeActivity,
@@ -127,7 +137,12 @@ class HomeActivity : AppCompatActivity() {
     }
 }
 
-class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {
+class DailyMissionsAdapter(
+        private val windowManager: WindowManager,
+        val viewModel: HomeViewModel,
+        private val confettiView: KonfettiView,
+        private val missionCompletedTextView: TextView
+) : ListAdapter<Mission, DailyMissionViewHolder>(MissionDiffCallback()) {
     var runningPos = -1 // 미션이 삭제돼서 position 이 이전과 달라질 수도 있음.
     var runningTask: Runnable? = null
     val handler = Handler()
@@ -140,6 +155,7 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
         val binding = ListItemDailyMissionsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DailyMissionViewHolder(binding)
     }
+
 
     override fun onBindViewHolder(holder: DailyMissionViewHolder, position: Int) {
         val item = getItem(position)
@@ -158,6 +174,27 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
 
                     MissionType.COUNT -> {
                         item.accCountsDaily++
+                        if (item.isTotallyCompleted()) {
+                            item.completedDate = Calendar.getInstance()
+                            viewModel.updateDailyMission(item)
+                        } else if (item.isCompletedToday()) {
+                            missionCompletedTextView.visibility = View.VISIBLE
+                            val display = DisplayMetrics()
+                            windowManager.defaultDisplay.getMetrics(display)
+                            holder.binding.root.context
+                            confettiView.visibility = View.VISIBLE
+                            confettiView.build()
+                                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                                    .setDirection(0.0, 359.0)
+                                    .setSpeed(1f, 5f)
+//                                    .setFadeOutEnabled(true)
+                                    .setTimeToLive(2000L)
+                                    .addShapes(Shape.RECT, Shape.CIRCLE)
+                                    .addSizes(Size(12))
+                                    .setPosition(-50f, display.widthPixels + 50f, -50f, display.heightPixels + 50f)
+//                                    .setPosition(-50f, confettiView.width + 50f, -50f, -50f)
+                                    .streamFor(300, 5000L)
+                        }
                         viewModel.updateDailyMission(item)
                     }
 
@@ -208,25 +245,6 @@ class DailyMissionsAdapter(val viewModel: HomeViewModel) : ListAdapter<Mission, 
                     missionCompleteImageView.visibility = View.GONE
                 }
             }
-//            if (position == runningPos) {
-//                timerTextView.text = secondsToStringFormat(item.accSecondsDaily)
-//                handler.postDelayed(runningTask, 1000)
-//                missionCompletePercentTextView.visibility = View.GONE
-//                percentMarkTextView.visibility = View.GONE
-//                timerTextView.visibility = View.VISIBLE
-//                missionCompleteImageView.visibility = View.GONE
-//            } else {
-//                timerTextView.visibility = View.GONE
-//                if (item.isCompletedToday()) {
-//                    percentMarkTextView.visibility = View.GONE
-//                    missionCompletePercentTextView.visibility = View.GONE
-//                    missionCompleteImageView.visibility = View.VISIBLE
-//                } else {
-//                    percentMarkTextView.visibility = View.VISIBLE
-//                    missionCompletePercentTextView.visibility = View.VISIBLE
-//                    missionCompleteImageView.visibility = View.GONE
-//                }
-//            }
         }
     }
 

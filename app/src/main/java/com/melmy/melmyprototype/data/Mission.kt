@@ -14,7 +14,7 @@ data class Mission(
         @ColumnInfo(name = "title") val title: String,
         @ColumnInfo(name = "is_stopped") val isStopped: Boolean = false,
         @ColumnInfo(name = "days") val days: DayOfWeekSet,
-        @ColumnInfo(name = "completed_date") val completedDate: Calendar = Calendar.getInstance(),
+        @ColumnInfo(name = "completed_date") var completedDate: Calendar = Calendar.getInstance(),
         @ColumnInfo(name = "created_date") val createdDate: Calendar = Calendar.getInstance(),
         @ColumnInfo(name = "type") val type: MissionType,
         @ColumnInfo(name = "goal_seconds_total") val goalSecondsTotal: Int = 0,
