@@ -7,7 +7,6 @@ import com.melmy.melmyprototype.data.LastAccessDate
 import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
 import com.melmy.melmyprototype.utils.isToday
-import com.melmy.melmyprototype.utils.runOnIoThread
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,7 +21,7 @@ class HomeViewModel(
     private val disposable = CompositeDisposable()
 
     fun updateDailyMission(mission: Mission) =
-            runOnIoThread { missionRepository.updateMission(mission) }
+            missionRepository.updateMission(mission)
 
     // stream 이 도중에 끊기는 경우를 생각해야함
     fun start() {

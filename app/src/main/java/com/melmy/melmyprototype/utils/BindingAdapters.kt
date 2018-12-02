@@ -14,6 +14,7 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.missionlist.MissionListViewHolder
 import com.melmy.melmyprototype.missionlistweek.MissionItem
 import com.melmy.melmyprototype.missionlistweek.MissionListWeekHeaderItem
+import com.melmy.melmyprototype.widget.DayPickerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
@@ -78,7 +79,6 @@ fun setEmptyTextViewVisibility(view: View, missions: ObservableField<List<Missio
                 }
             }
         }
-
     })
 }
 
@@ -98,6 +98,10 @@ fun bindDrawerMissions(navigationView: NavigationView, missions: ObservableField
                 textView.text = ((accUpper.toFloat() / accLower.toFloat()) * 100).toInt().toString()
             }
         }
-
     })
+}
+
+@BindingAdapter("app:days")
+fun setDaysOfWeek(dayPickerView: DayPickerView, days: DayOfWeekSet) {
+    dayPickerView.initWithDayOfWeekSet(days)
 }

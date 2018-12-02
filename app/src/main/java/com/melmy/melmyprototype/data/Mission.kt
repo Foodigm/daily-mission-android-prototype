@@ -10,13 +10,13 @@ import kotlin.math.min
 @Entity(tableName = "missions")
 data class Mission(
         @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id") val id: Long = 0,
-        @ColumnInfo(name = "title") val title: String,
+        @ColumnInfo(name = "id") var id: Long = -1L,
+        @ColumnInfo(name = "title") var title: String = "",
         @ColumnInfo(name = "is_stopped") val isStopped: Boolean = false,
-        @ColumnInfo(name = "days") val days: DayOfWeekSet,
+        @ColumnInfo(name = "days") var days: DayOfWeekSet = DayOfWeekSet(0),
         @ColumnInfo(name = "completed_date") var completedDate: Calendar = Calendar.getInstance(),
         @ColumnInfo(name = "created_date") val createdDate: Calendar = Calendar.getInstance(),
-        @ColumnInfo(name = "type") val type: MissionType,
+        @ColumnInfo(name = "type") val type: MissionType = MissionType.COUNT,
         @ColumnInfo(name = "goal_seconds_total") val goalSecondsTotal: Int = 0,
         @ColumnInfo(name = "goal_seconds_daily") val goalSecondsDaily: Int = 0,
         @ColumnInfo(name = "acc_seconds_total") val accSecondsTotal: Int = 0,

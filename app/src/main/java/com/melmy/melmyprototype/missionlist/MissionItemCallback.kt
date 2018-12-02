@@ -8,4 +8,6 @@ interface MissionItemCallback {
     fun editMission(missionId: Long)
 
     fun openMissionDetail(missionId: Long)
+
+    fun openMissionEdit(missionId: Long)
 }

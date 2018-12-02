@@ -44,6 +44,23 @@ class DayPickerView : LinearLayout, View.OnClickListener {
         binding.dayPickerItemSunday.setOnClickListener(this)
     }
 
+    fun initWithDayOfWeekSet(days: DayOfWeekSet) {
+        toggleColor(binding.dayPickerItemMonday, days.monday)
+        toggleColor(binding.dayPickerItemTuesday, days.tuesday)
+        toggleColor(binding.dayPickerItemWednesday, days.wednesday)
+        toggleColor(binding.dayPickerItemThursday, days.thursday)
+        toggleColor(binding.dayPickerItemFriday, days.friday)
+        toggleColor(binding.dayPickerItemSaturday, days.saturday)
+        toggleColor(binding.dayPickerItemSunday, days.sunday)
+        if (days.monday) dayOfWeekSet.toggleMonday()
+        if (days.tuesday) dayOfWeekSet.toggleTuesday()
+        if (days.wednesday) dayOfWeekSet.toggleWednesday()
+        if (days.thursday) dayOfWeekSet.toggleThursday()
+        if (days.friday) dayOfWeekSet.toggleFriday()
+        if (days.saturday) dayOfWeekSet.toggleSaturday()
+        if (days.sunday) dayOfWeekSet.toggleSunday()
+    }
+
     override fun onClick(v: View) {
         //Checked TextView 일때만 실행
         if (v !is CheckedTextView) return

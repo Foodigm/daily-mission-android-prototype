@@ -47,7 +47,7 @@ class MissionRepository private constructor(
             lastAccessDateDao.insertLastAccessDate(accessDate)
 
     fun updateMission(mission: Mission) =
-            missionDao.updateMission(mission)
+            runOnIoThread { missionDao.updateMission(mission) }
 
     fun removeAllMissions() {
         runOnIoThread {

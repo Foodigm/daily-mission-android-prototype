@@ -65,7 +65,7 @@ class MissionDetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_MISSION_ID = "MISSION_ID"
 
-        fun newInstance(context: Context, missionId: Long): Intent {
+        fun createIntent(context: Context, missionId: Long): Intent {
             val intent = Intent(context, MissionDetailActivity::class.java)
             intent.putExtra(EXTRA_MISSION_ID, missionId)
             return intent

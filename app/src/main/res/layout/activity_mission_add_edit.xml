@@ -6,12 +6,18 @@
     <data>
 
         <variable
+            name="viewmodel"
+            type="com.melmy.melmyprototype.missionaddedit.MissionAddEditViewModel" />
+
+        <variable
             name="timeMissionVisibility"
             type="int" />
 
         <variable
             name="countMissionVisibility"
             type="int" />
+
+        <import type="com.melmy.melmyprototype.data.MissionType" />
     </data>
 
     <LinearLayout
@@ -80,7 +86,8 @@
                 android:maxLength="24"
                 android:maxLines="1"
                 android:paddingStart="4dp"
-                android:paddingEnd="4dp" />
+                android:paddingEnd="4dp"
+                android:text="@{viewmodel.mission.title}" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,7 +118,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:gravity="center" />
+                android:gravity="center"
+                app:days="@{viewmodel.mission.days}" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,15 +162,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:background="@drawable/selector_mission_mode"
-                    android:checked="true"
+                    android:background="@{viewmodel.mission.id != -1L ? @drawable/selector_mission_mode_disabled : @drawable/selector_mission_mode}"
+                    android:checked="@{viewmodel.mission.type == MissionType.COUNT ? true : false}"
+                    android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                     android:paddingLeft="8dp"
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="4dp"
                     android:text="횟수형"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@{viewmodel.mission.type == MissionType.COUNT ? @color/colorWhite : @color/colorGray4}"
                     android:textSize="13dp"
+                    tools:checked="true"
                     tools:ignore="SpUsage" />
 
                 <CheckedTextView
@@ -170,13 +180,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:background="@drawable/selector_mission_mode"
+                    android:background="@{viewmodel.mission.id != -1L ? @drawable/selector_mission_mode_disabled : @drawable/selector_mission_mode}"
+                    android:checked="@{viewmodel.mission.type == MissionType.TIME ? true : false}"
+                    android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                     android:paddingLeft="8dp"
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
                     android:paddingBottom="4dp"
                     android:text="시간형"
-                    android:textColor="@color/colorGray4"
+                    android:textColor="@{viewmodel.mission.type == MissionType.TIME ? @color/colorWhite : @color/colorGray4}"
                     android:textSize="13dp"
                     tools:ignore="SpUsage" />
             </LinearLayout>
@@ -215,9 +227,11 @@
                         android:id="@+id/mission_type_count_total_minus"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:background="@drawable/shape_solid_oval_blue"
+                        android:background="@{viewmodel.mission.id != -1L ? @drawable/shape_solid_oval_gray : @drawable/shape_solid_oval_blue}"
+                        android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                         android:padding="2dp"
-                        app:srcCompat="@drawable/ic_minus_vec" />
+                        app:srcCompat="@drawable/ic_minus_vec"
+                        tools:background="@drawable/shape_solid_oval_blue" />
 
                     <EditText
                         android:id="@+id/mission_type_count_total_amount"
@@ -229,18 +243,21 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="5"
-                        android:text="10"
+                        android:text="@{`` + viewmodel.mission.goalCountsTotal}"
                         android:textColor="@color/colorWhite"
                         android:textSize="16dp"
-                        tools:ignore="SpUsage" />
+                        tools:ignore="SpUsage"
+                        tools:text="10" />
 
                     <ImageView
                         android:id="@+id/mission_type_count_total_plus"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:background="@drawable/shape_solid_oval_blue"
+                        android:background="@{viewmodel.mission.id != -1L ? @drawable/shape_solid_oval_gray : @drawable/shape_solid_oval_blue}"
+                        android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                         android:padding="2dp"
-                        app:srcCompat="@drawable/ic_plus_vec" />
+                        app:srcCompat="@drawable/ic_plus_vec"
+                        tools:background="@drawable/shape_solid_oval_blue" />
 
                 </LinearLayout>
 
@@ -269,9 +286,11 @@
                         android:id="@+id/mission_type_count_daily_minus"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:background="@drawable/shape_solid_oval_blue"
+                        android:background="@{viewmodel.mission.id != -1L ? @drawable/shape_solid_oval_gray : @drawable/shape_solid_oval_blue}"
+                        android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                         android:padding="2dp"
-                        app:srcCompat="@drawable/ic_minus_vec" />
+                        app:srcCompat="@drawable/ic_minus_vec"
+                        tools:background="@drawable/shape_solid_oval_blue" />
 
                     <EditText
                         android:id="@+id/mission_type_count_daily_amount"
@@ -283,18 +302,21 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="5"
-                        android:text="3"
+                        android:text="@{`` + viewmodel.mission.goalCountsDaily}"
                         android:textColor="@color/colorWhite"
                         android:textSize="16dp"
-                        tools:ignore="SpUsage" />
+                        tools:ignore="SpUsage"
+                        tools:text="3" />
 
                     <ImageView
                         android:id="@+id/mission_type_count_daily_plus"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:background="@drawable/shape_solid_oval_blue"
+                        android:background="@{viewmodel.mission.id != -1L ? @drawable/shape_solid_oval_gray : @drawable/shape_solid_oval_blue}"
+                        android:enabled="@{viewmodel.mission.id != -1L ? false : true}"
                         android:padding="2dp"
-                        app:srcCompat="@drawable/ic_plus_vec" />
+                        app:srcCompat="@drawable/ic_plus_vec"
+                        tools:background="@drawable/shape_solid_oval_blue" />
 
                 </LinearLayout>
 

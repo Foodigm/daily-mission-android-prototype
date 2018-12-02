@@ -46,6 +46,11 @@ class MissionListActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         adapter = MissionListAdapter(object : MissionItemCallback {
+            override fun openMissionEdit(missionId: Long) {
+                val intent = MissionAddEditActivity.createIntent(this@MissionListActivity, missionId)
+                startActivity(intent)
+            }
+
             override fun deleteMission(mission: Mission) {
                 viewModel.deleteMission(mission)
             }
@@ -55,7 +60,7 @@ class MissionListActivity : AppCompatActivity() {
             }
 
             override fun openMissionDetail(missionId: Long) {
-                val intent = MissionDetailActivity.newInstance(this@MissionListActivity, missionId)
+                val intent = MissionDetailActivity.createIntent(this@MissionListActivity, missionId)
                 startActivity(intent)
             }
 
@@ -190,7 +195,7 @@ class MissionListAdapter(
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.item_edit -> {
-
+                            missionItemCallback.openMissionEdit(item.id)
                         }
                         R.id.item_remove -> {
                             val builder = AlertDialog.Builder(context)

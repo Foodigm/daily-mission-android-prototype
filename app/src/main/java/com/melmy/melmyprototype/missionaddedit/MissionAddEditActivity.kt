@@ -18,6 +18,7 @@ import com.melmy.melmyprototype.utils.InjectorUtil
 
 //TODO : 하드코딩 제거 - 레이아웃 파일 포함
 class MissionAddEditActivity : AppCompatActivity() {
+    private var missionId = -1L
     lateinit var viewModel: MissionAddEditViewModel
     lateinit var binding: ActivityMissionAddEditBinding
 
@@ -26,8 +27,14 @@ class MissionAddEditActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_add_edit)
 
         setUpToolbar()
-        setUpViews()
+        loadExtras(savedInstanceState)
         setUpViewModel()
+        setUpViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.start(missionId)
     }
 
     private fun setUpToolbar() {
@@ -50,6 +57,7 @@ class MissionAddEditActivity : AppCompatActivity() {
 
 
     private fun setUpViews() {
+        binding.viewmodel = viewModel
         with(binding) {
             countMissionVisibility = View.VISIBLE
             timeMissionVisibility = View.GONE
@@ -120,7 +128,7 @@ class MissionAddEditActivity : AppCompatActivity() {
                     Toast.makeText(this@MissionAddEditActivity, "잘못된 숫자입니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-            executePendingBindings()
+//            executePendingBindings()
         }
     }
 
@@ -128,7 +136,7 @@ class MissionAddEditActivity : AppCompatActivity() {
     private fun submitMission() {
         val title = binding.missionTitleEditText.text.toString()
         val dayOfWeekSet = binding.missionDayPicker.dayOfWeekSet
-        val newMission = when (binding.countMissionVisibility) {
+        val mission = when (binding.countMissionVisibility) {
             View.VISIBLE -> {
                 Mission(
                         title = title,
@@ -157,16 +165,30 @@ class MissionAddEditActivity : AppCompatActivity() {
 
             }
         }
-        viewModel.missionRepository.createMission(newMission)
+        if (missionId != -1L) {
+            viewModel.updateMission(mission.title, mission.days)
+        } else {
+            viewModel.repository.createMission(mission)
+        }
         finish()
     }
 
 
+    private fun loadExtras(savedInstanceState: Bundle?) {
+        val saved = savedInstanceState ?: intent.extras
+
+
+        missionId = saved.getLong(EXTRA_MISSION_ID, -1L)
+    }
+
     companion object {
+        const val EXTRA_MISSION_ID = "MISSION_ID"
         const val SPINNER_OPTION_COUNT_MISSION = 0
         const val SPINNER_OPTION_TIME_MISSION = 1
-        fun createIntent(context: Context): Intent {
+
+        fun createIntent(context: Context, missionId: Long = -1): Intent {
             val intent = Intent(context, MissionAddEditActivity::class.java)
+            intent.putExtra(EXTRA_MISSION_ID, missionId)
             return intent
         }
     }
