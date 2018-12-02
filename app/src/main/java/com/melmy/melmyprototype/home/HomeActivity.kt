@@ -187,12 +187,10 @@ class DailyMissionsAdapter(
                                     .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                                     .setDirection(0.0, 359.0)
                                     .setSpeed(1f, 5f)
-//                                    .setFadeOutEnabled(true)
                                     .setTimeToLive(2000L)
                                     .addShapes(Shape.RECT, Shape.CIRCLE)
                                     .addSizes(Size(12))
                                     .setPosition(-50f, display.widthPixels + 50f, -50f, display.heightPixels + 50f)
-//                                    .setPosition(-50f, confettiView.width + 50f, -50f, -50f)
                                     .streamFor(300, 5000L)
                         }
                         viewModel.updateDailyMission(item)
