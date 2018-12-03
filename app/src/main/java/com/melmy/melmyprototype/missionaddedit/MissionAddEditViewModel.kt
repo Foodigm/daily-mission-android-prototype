@@ -11,9 +11,11 @@ class MissionAddEditViewModel(
         val repository: MissionRepository
 ) : ViewModel(), MissionDataSource.GetMissionCallback {
     val mission = ObservableField<Mission>()
+    val missionLoaded = ObservableField<Boolean>()
 
     fun start(missionId: Long) {
         mission.set(Mission())
+        missionLoaded.set(false)
         if (missionId != -1L) {
             getMission(missionId)
         }
@@ -25,6 +27,7 @@ class MissionAddEditViewModel(
 
     override fun onMissionLoaded(mission: Mission) {
         this.mission.set(mission)
+        this.missionLoaded.set(true)
     }
 
     override fun onDataNotAvailable() {

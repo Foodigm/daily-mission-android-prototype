@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGray6"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <TextView
             android:id="@+id/list_header_item_mission_week_text_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:textStyle="bold" />
+            android:textSize="13dp"
+            tools:ignore="SpUsage"
+            tools:text="월요일" />
+
     </LinearLayout>
 </layout>

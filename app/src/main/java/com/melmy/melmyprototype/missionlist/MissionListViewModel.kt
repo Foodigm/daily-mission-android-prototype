@@ -6,8 +6,8 @@ import com.melmy.melmyprototype.data.Mission
 import com.melmy.melmyprototype.data.MissionRepository
 
 class MissionListViewModel(val missionRepository: MissionRepository) : ViewModel() {
-    private var currentFilter = MissionFilterType.ACTIVE_MISSIONS
-    private var currentOrder = MissionSortType.SORT_BY_NAME
+    private var currentFilter = MissionFilterType.ALL_MISSIONS
+    private var currentOrder = MissionSortType.SORT_BY_STARTED_DATE
     private val dbMissions = missionRepository.getMissionsLiveData()
     val missions = MediatorLiveData<List<Mission>>()
 

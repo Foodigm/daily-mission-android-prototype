@@ -50,10 +50,10 @@ class MissionListWeekActivity : AppCompatActivity() {
     private fun setUpViews() {
         val factory = InjectorUtil.provideMissionListWeekViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(MissionListWeekViewModel::class.java)
+        binding.viewmodel = viewModel
         with(binding) {
             recyclerView.adapter = this@MissionListWeekActivity.adapter
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
-            viewModel = this@MissionListWeekActivity.viewModel
 
             executePendingBindings()
         }

@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="viewmodel"
             type="com.melmy.melmyprototype.missionlistweek.MissionListWeekViewModel" />
     </data>
 
@@ -50,10 +50,21 @@
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:items_week="@{viewModel.missions}"
+            app:items_week="@{viewmodel.missions}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout" />
+
+        <TextView
+            android:id="@+id/empty_mission_list_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_mission_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout"
+            app:setVisibility="@{viewmodel.missions}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

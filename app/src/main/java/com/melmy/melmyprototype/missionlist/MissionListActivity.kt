@@ -42,6 +42,8 @@ class MissionListActivity : AppCompatActivity() {
     private fun setUpViewModel() {
         val factory = InjectorUtil.provideMissionListViewModelFactory(this)
         viewModel = ViewModelProviders.of(this, factory).get(MissionListViewModel::class.java)
+        viewModel.changeOrder(MissionSortType.SORT_BY_STARTED_DATE)
+        viewModel.changeFilter(MissionFilterType.ALL_MISSIONS)
     }
 
     private fun setUpViews() {

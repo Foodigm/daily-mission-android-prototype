@@ -10,7 +10,7 @@ import kotlin.math.min
 @Entity(tableName = "missions")
 data class Mission(
         @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id") var id: Long = -1L,
+        @ColumnInfo(name = "id") val id: Long = 0,
         @ColumnInfo(name = "title") var title: String = "",
         @ColumnInfo(name = "is_stopped") val isStopped: Boolean = false,
         @ColumnInfo(name = "days") var days: DayOfWeekSet = DayOfWeekSet(0),

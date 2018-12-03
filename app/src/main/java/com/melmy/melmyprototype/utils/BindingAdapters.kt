@@ -38,6 +38,9 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
 
             val missions2D = Array(7) { ArrayList<Mission>() }
             missions.get()?.let {
+                if (it.isEmpty()) {
+                    recyclerView.visibility = View.GONE
+                }
                 for (mission in it) {
                     if (mission.days.monday) missions2D[0].add(mission)
                     if (mission.days.tuesday) missions2D[1].add(mission)
@@ -53,7 +56,9 @@ fun bindMissionListWeekReclcerViewItems(recyclerView: RecyclerView, missions: Ob
             val sections = Array(7) { Section() }
             val daysArray = recyclerView.context.resources.getStringArray(R.array.days_of_week_full)
             for (i in 0..6) {
-                sections[i].setHeader(MissionListWeekHeaderItem(daysArray[i]))
+                if (missions2D[i].size > 0) {
+                    sections[i].setHeader(MissionListWeekHeaderItem(daysArray[i]))
+                }
                 adapter.add(sections[i])
                 for (mission in missions2D[i]) {
                     adapter.add(MissionItem(mission))
