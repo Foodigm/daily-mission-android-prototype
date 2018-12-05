@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -63,6 +66,20 @@ class MissionListWeekActivity : AppCompatActivity() {
         fun createIntent(context: Context): Intent {
             val intent = Intent(context, MissionListWeekActivity::class.java)
             return intent
+        }
+    }
+
+    class SectionsPagerAdapter(fm: FragmentManager, private val daysArray: Array<String>) : FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            TODO("MISSION LIST WEEK FRAGMENT")
+        }
+
+        override fun getCount(): Int {
+            return daysArray.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return daysArray[position]
         }
     }
 }

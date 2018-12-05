@@ -46,6 +46,25 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <!--
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/mission_list_week_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mission_list_week_view_pager"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mission_list_week_tab_layout" />
+            -->
+
+        <!-- TODO : FRAMGENT 구현후 수정 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
@@ -66,5 +85,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout"
             app:setVisibility="@{viewmodel.missions}" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
