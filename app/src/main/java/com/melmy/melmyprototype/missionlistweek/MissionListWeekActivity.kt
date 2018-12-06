@@ -7,33 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.melmy.melmyprototype.R
 import com.melmy.melmyprototype.databinding.ActivityMissionListWeekBinding
-import com.melmy.melmyprototype.utils.InjectorUtil
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
 
 class MissionListWeekActivity : AppCompatActivity() {
 
-    lateinit var viewModel: MissionListWeekViewModel
     lateinit var binding: ActivityMissionListWeekBinding
-    val adapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mission_list_week)
 
         setUpToolbar()
-        setUpViews()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.start()
+        setUpViewPager()
     }
 
     private fun setUpToolbar() {
@@ -41,7 +28,6 @@ class MissionListWeekActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_back)
-            setDisplayShowTitleEnabled(false) // TODO 왜 다른 액티비티들은 이걸 안해줘도 title 이 안보이는데 이건 안해주면 Theme 을 NoActionBar 로 해도 타이틀이 보이는지 의문..
         }
     }
 
@@ -50,14 +36,10 @@ class MissionListWeekActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setUpViews() {
-        val factory = InjectorUtil.provideMissionListWeekViewModelFactory(this)
-        viewModel = ViewModelProviders.of(this, factory).get(MissionListWeekViewModel::class.java)
-        binding.viewmodel = viewModel
+    private fun setUpViewPager() {
         with(binding) {
-            recyclerView.adapter = this@MissionListWeekActivity.adapter
-            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.VERTICAL, false)
-
+            missionListWeekViewPager.adapter = SectionsPagerAdapter(supportFragmentManager, resources.getStringArray(R.array.tab_indicator_week))
+            missionListWeekTabLayout.setupWithViewPager(missionListWeekViewPager)
             executePendingBindings()
         }
     }
@@ -69,17 +51,17 @@ class MissionListWeekActivity : AppCompatActivity() {
         }
     }
 
-    class SectionsPagerAdapter(fm: FragmentManager, private val daysArray: Array<String>) : FragmentPagerAdapter(fm) {
+    class SectionsPagerAdapter(fm: FragmentManager, private val tabNameArray: Array<String>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            TODO("MISSION LIST WEEK FRAGMENT")
+            return MissionListWeekFragment.newInstance(position)
         }
 
         override fun getCount(): Int {
-            return daysArray.size
+            return tabNameArray.size
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return daysArray[position]
+            return tabNameArray[position]
         }
     }
 }

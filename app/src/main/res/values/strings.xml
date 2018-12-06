@@ -98,4 +98,17 @@
     <string name="mission_completed">미션을 달성했습니다!</string>
     <string name="remove_all">모두 삭제</string>
     <string name="edit">수정</string>
+
+    <!-- 요일별 미션 목록 -->
+    <string name="show_all">전체보기</string>
+    <string-array name="tab_indicator_week">
+        <item>@string/show_all</item>
+        <item>@string/day_of_week_picker_monday_full</item>
+        <item>@string/day_of_week_picker_tuesday_full</item>
+        <item>@string/day_of_week_picker_wednesday_full</item>
+        <item>@string/day_of_week_picker_thursday_full</item>
+        <item>@string/day_of_week_picker_friday_full</item>
+        <item>@string/day_of_week_picker_saturday_full</item>
+        <item>@string/day_of_week_picker_sunday_full</item>
+    </string-array>
 </resources>

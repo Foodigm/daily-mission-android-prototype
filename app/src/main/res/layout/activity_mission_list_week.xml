@@ -3,14 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewmodel"
-            type="com.melmy.melmyprototype.missionlistweek.MissionListWeekViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".missionlistweek.MissionListWeekActivity">
@@ -18,53 +11,41 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/mission_list_week_appbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp">
+                app:contentInsetStart="0dp"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="@string/mission_list_by_day_of_week"
+                app:titleTextColor="@android:color/white" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/mission_list_week_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@null"
+                app:tabGravity="center"
+                app:tabIndicatorColor="@color/colorWhite"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/colorWhite"
+                app:tabTextColor="@color/colorGray5" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:text="@string/mission_list_by_day_of_week"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp"
-                        tools:ignore="RtlSymmetry" />
-
-                </LinearLayout>
-
-            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
-        <!--
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/mission_list_week_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/mission_list_week_view_pager"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mission_list_week_tab_layout" />
-            -->
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
         <!-- TODO : FRAMGENT 구현후 수정 -->
+        <!--
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
@@ -85,6 +66,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mission_list_week_appbar_layout"
             app:setVisibility="@{viewmodel.missions}" />
+            -->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

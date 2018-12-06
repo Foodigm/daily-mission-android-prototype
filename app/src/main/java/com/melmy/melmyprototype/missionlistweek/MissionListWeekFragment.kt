@@ -3,45 +3,59 @@ package com.melmy.melmyprototype.missionlistweek
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.melmy.melmyprototype.R
-import com.melmy.melmyprototype.utils.DayOfWeekSet
+import com.melmy.melmyprototype.databinding.FragmentMissionListWeekBinding
+import com.melmy.melmyprototype.utils.InjectorUtil
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 
 //TODO : 탭 레이아웃 포함해서 구현 : 전체보기, 월요일, 화요일, 수요일 ... 이런식으로
 class MissionListWeekFragment : Fragment() {
-    //private lateinit var dayOfWeek: DayOfWeekSet //TODO : 요일별로 분류할 방법 생각...
+    lateinit var viewModel: MissionListWeekViewModel
+    lateinit var binding: FragmentMissionListWeekBinding
+    val adapter = GroupAdapter<ViewHolder>()
 
-    //private var listener: OnListFragmentInteractionListener? = null
+    private var tabIndex = 0
 
-    //override fun onCreate(savedInstanceState: Bundle?) {
-    //    super.onCreate(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
+        viewModel.start(tabIndex)
+    }
 
-    //    arguments?.let {
-    //        columnCount = it.getInt(ARG_COLUMN_COUNT)
-    //    }
-    //}
+    private fun setUpViews(context: Context) {
+        val factory = InjectorUtil.provideMissionListWeekViewModelFactory(context)
+        viewModel = ViewModelProviders.of(this, factory).get(MissionListWeekViewModel::class.java)
+        binding.viewmodel = viewModel
+        with(binding) {
+            recyclerView.adapter = this@MissionListWeekFragment.adapter
+            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(recyclerView.context, androidx.recyclerview.widget.RecyclerView.VERTICAL, false)
 
-    //override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    //    val view = inflater.inflate(R.layout.fragment_mission_list_week, container, false)
+            executePendingBindings()
+        }
+    }
 
-    //    if (view is RecyclerView) {
-    //        with(view) {
-    //            layoutManager = when {
-    //                columnCount <= 1 -> LinearLayoutManager(context)
-    //                else -> GridLayoutManager(context, columnCount)
-    //            }
-    //            /*
-    //            adapter = MyItemRecyclerViewAdapter(DummyContent.ITEMS, listener)
-    //            */
-    //        }
-    //    }
-    //    return view
-    //}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            tabIndex = it.getInt(ARG_TAB_INDEX)
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mission_list_week, container, false)
+
+        val view = binding.root
+
+        context?.let { setUpViews(it) }
+
+        return view
+    }
 
     //override fun onAttach(context: Context) {
     //    super.onAttach(context)
@@ -75,13 +89,13 @@ class MissionListWeekFragment : Fragment() {
 
 
     companion object {
-        const val ARG_DAY_OF_WEEK = "day"
+        const val ARG_TAB_INDEX = "tab_index"
 
         @JvmStatic
-        fun newInstance(columnCount: Int) =
+        fun newInstance(index: Int) =
                 MissionListWeekFragment().apply {
                     arguments = Bundle().apply {
-                        putInt(ARG_DAY_OF_WEEK, columnCount)
+                        putInt(ARG_TAB_INDEX, index)
                     }
                 }
     }
